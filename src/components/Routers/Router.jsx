@@ -12,7 +12,7 @@ const routesData = createBrowserRouter(
       //   errorElement: <RouterErrorPage />,
     },
     {
-      path: '/login',
+      path: '/register',
       element: <Register />,
       //   errorElement: <RouterErrorPage />,
     },

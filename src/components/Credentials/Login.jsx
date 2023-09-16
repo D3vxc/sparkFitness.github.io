@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toastify
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -23,12 +26,15 @@ function Login() {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      // Simulate a successful login for demonstration purposes.
-      // Replace this with your actual login logic.
-      if (data.email === 'demo@example.com' && data.password === 'password') {
+
+      // Make an HTTP POST request to the login API endpoint with user data
+      const response = await axios.post('/user/login', data);
+
+      // Check the response status code to determine success or failure
+      if (response.status === 200) {
         // Show a success toast message
         toast('🦄 Wow so easy!', {
-          position: 'top-center',
+          position: 'bottom-right',
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
@@ -40,8 +46,8 @@ function Login() {
         console.log('User logged in successfully');
       } else {
         // Show an error toast message for invalid credentials
-        toast.error('🚫 Invalid email or password', {
-          position: 'top-center',
+        toast('🦄 Wow so easy!', {
+          position: 'bottom-right',
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
@@ -55,8 +61,8 @@ function Login() {
       setIsLoading(false);
     } catch (error) {
       // Show an error toast message for other errors
-      toast.error('🚫 Login failed. An error occurred.', {
-        position: 'top-center',
+      toast('Login failed!', {
+        position: 'bottom-right',
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -72,6 +78,7 @@ function Login() {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Box
         sx={{
           width: '500px',
@@ -143,6 +150,22 @@ function Login() {
             >
               {isLoading ? 'Logging in...' : 'Login'}
             </Button>
+          </Box>
+
+          <Box
+            onClick={() => {
+              navigate('/register');
+            }}
+          >
+            <Typography
+              sx={{
+                cursor: 'pointer',
+                fontSize: '12px',
+                color: '#3f51b5',
+              }}
+            >
+              Don't have an account? click here to register
+            </Typography>
           </Box>
         </form>
       </Box>
