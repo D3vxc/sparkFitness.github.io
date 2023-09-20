@@ -1,7 +1,14 @@
-import React from 'react';
-import { Box, Typography, TextField, Button } from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
 
 function Register() {
   const {
@@ -9,43 +16,63 @@ function Register() {
     control,
     formState: { errors },
   } = useForm({
-    mode: 'onBlur',
+    mode: "onBlur",
     defaultValues: {
-      email: '',
-      phone: '',
-      username: '',
-      password: '',
+      email: "",
+      phone: "",
+      username: "",
+      password: "",
     },
   });
 
+  const [isVerified, setIsVerified] = useState(false); // Initialize isVerified state
+
   const onSubmit = async (data) => {
     try {
-      await axios.post('/user/register', data);
-      console.log('User registered successfully');
+      // Include isVerified in the data
+      await axios.post("/user/register", { ...data, isVerified });
+      console.log("User registered successfully");
     } catch (error) {
-      console.error('Registration failed', error.response.data);
+      console.error("Registration failed", error);
     }
+  };
+
+  // Handle checkbox change
+  const handleCheckboxChange = (event) => {
+    setIsVerified(event.target.checked);
   };
 
   return (
     <React.Fragment>
       <Box
         sx={{
-          width: '500px',
+          width: "500px",
         }}
       >
         <Typography variant="h4">Register here</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Box my={2}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={isVerified}
+                  onChange={handleCheckboxChange}
+                  color="primary"
+                />
+              }
+              label="I am verified"
+            />
+          </Box>
           <Box my={2}>
             <Controller
               name="email"
               control={control}
               defaultValue=""
               rules={{
-                required: 'Email is required',
+                required: "Email is required",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Invalid email address',
+                  message: "Invalid email address",
                 },
               }}
               render={({ field }) => (
@@ -69,10 +96,10 @@ function Register() {
               control={control}
               defaultValue=""
               rules={{
-                required: 'Phone number is required',
+                required: "Phone number is required",
                 pattern: {
                   value: /^[0-9]{10}$/i,
-                  message: 'Invalid phone number',
+                  message: "Invalid phone number",
                 },
               }}
               render={({ field }) => (
@@ -96,10 +123,10 @@ function Register() {
               control={control}
               defaultValue=""
               rules={{
-                required: 'Username is required',
+                required: "Username is required",
                 minLength: {
                   value: 6,
-                  message: 'Username must be at least 6 characters',
+                  message: "Username must be at least 6 characters",
                 },
               }}
               render={({ field }) => (
@@ -123,10 +150,10 @@ function Register() {
               control={control}
               defaultValue=""
               rules={{
-                required: 'Password is required',
+                required: "Password is required",
                 minLength: {
                   value: 8,
-                  message: 'Password must be at least 8 characters',
+                  message: "Password must be at least 8 characters",
                 },
               }}
               render={({ field }) => (
