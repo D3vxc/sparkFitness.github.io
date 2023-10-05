@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useFetchUsers } from "../Hooks/useFetchUsers.js";
+import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
 function Home() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -10,25 +10,25 @@ function Home() {
     data: getAllUsers,
     isLoading: getusersLoading,
     refetch: refetchUsers,
-  } = useFetchUsers();
+  } = useFetchAllUsers();
 
   console.log("getAllUsers", getAllUsers);
 
-  useEffect(() => {
-    if (!isVerified) {
-      navigate("/");
-    } else {
-      axios
-        .get("/user/getusers")
-        .then((response) => {
-          setUsers(response.data); // Update state with user data
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error("Error fetching user data", error);
-        });
-    }
-  }, [isVerified, navigate]);
+  // useEffect(() => {
+  //   if (!isVerified) {
+  //     navigate("/");
+  //   } else {
+  //     axios
+  //       .get("/user/getusers")
+  //       .then((response) => {
+  //         setUsers(response.data); // Update state with user data
+  //         console.log(response);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching user data", error);
+  //       });
+  //   }
+  // }, [isVerified, navigate]);
 
   return (
     <div>
