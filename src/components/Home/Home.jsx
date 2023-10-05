@@ -12,7 +12,7 @@ function Home() {
     refetch: refetchUsers,
   } = useFetchAllUsers();
 
-  console.log("getAllUsers", getAllUsers);
+  // console.log("getAllUsers", getAllUsers);
 
   // useEffect(() => {
   //   if (!isVerified) {
@@ -38,8 +38,8 @@ function Home() {
       {/* Display user data */}
       <h2>User Data</h2>
       <ul>
-        {users.map((user) => (
-          <li key={user._id}>{user.username}</li>
+        {getAllUsers?.map((user) => (
+          <li key={user?._id}>{user?.username}</li>
         ))}
       </ul>
     </div>
