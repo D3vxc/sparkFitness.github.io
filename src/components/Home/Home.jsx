@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Header from "../Header.jsx";
 import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
 function Home() {
   const navigate = useNavigate();
@@ -11,8 +12,6 @@ function Home() {
     isLoading: getusersLoading,
     refetch: refetchUsers,
   } = useFetchAllUsers();
-
-  // console.log("getAllUsers", getAllUsers);
 
   // useEffect(() => {
   //   if (!isVerified) {
@@ -31,7 +30,8 @@ function Home() {
   // }, [isVerified, navigate]);
 
   return (
-    <div>
+    <React.Fragment>
+      <Header />
       <h1>Welcome to the Home Page</h1>
       <p>This is some sample content for the home page.</p>
 
@@ -42,7 +42,7 @@ function Home() {
           <li key={user?._id}>{user?.username}</li>
         ))}
       </ul>
-    </div>
+    </React.Fragment>
   );
 }
 

@@ -5,15 +5,12 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -55,6 +52,7 @@ function Login() {
           theme: "light",
         });
         console.log("User logged in successfully");
+        navigate("/home");
       } else {
         // Show an error toast message for invalid credentials
         toast("🦄 Invalid credentials!", {
@@ -82,7 +80,7 @@ function Login() {
         progress: undefined,
         theme: "light",
       });
-      console.error("Login failed", error.response.data);
+      console.error("Invalid email Or password", error.response.data);
       setIsLoading(false);
     }
   };
@@ -174,10 +172,10 @@ function Login() {
                 {errors.password.message}
               </Typography>
             )}
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
-            />
+            /> */}
             <Button
               type='submit'
               fullWidth
