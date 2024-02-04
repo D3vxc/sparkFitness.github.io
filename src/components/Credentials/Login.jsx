@@ -5,7 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -42,7 +41,7 @@ function Login() {
       if (response.status === 200) {
         // Show a success toast message
         toast("🦄 Login successful!", {
-          position: "bottom-right",
+          position: "top-center",
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
@@ -56,7 +55,7 @@ function Login() {
       } else {
         // Show an error toast message for invalid credentials
         toast("🦄 Invalid credentials!", {
-          position: "bottom-right",
+          position: "top-center",
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
@@ -71,7 +70,7 @@ function Login() {
     } catch (error) {
       // Show an error toast message for other errors
       toast("Login failed!", {
-        position: "bottom-right",
+        position: "top-center",
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -167,6 +166,7 @@ function Login() {
                 />
               )}
             />
+
             {errors.password && (
               <Typography variant='caption' color='error'>
                 {errors.password.message}
@@ -190,10 +190,10 @@ function Login() {
                 <Typography
                   variant='body2'
                   onClick={() => {
-                    // navigate("/forgot-password");
+                    navigate("/forgot-password");
                   }}
                   sx={{
-                    cursor: "not-allowed",
+                    cursor: "pointer",
                   }}
                 >
                   Forgot password?

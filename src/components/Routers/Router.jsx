@@ -3,12 +3,15 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Register from "../Credentials/Register";
 import Home from "../Home/Home";
 import Login from "../Credentials/Login";
+import LandingPage from "../LandingPages/LandingPage.jsx";
+import ForgotPassword from "../Home/ForgotPassword.jsx";
+import OtpConfirmation from "../Home/OtpConfirmation.jsx";
 
 const routesData = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Login />,
+      element: <LandingPage />,
       //   errorElement: <RouterErrorPage />,
     },
     {
@@ -17,8 +20,23 @@ const routesData = createBrowserRouter(
       //   errorElement: <RouterErrorPage />,
     },
     {
+      path: "/login",
+      element: <Login />,
+      //   errorElement: <RouterErrorPage />,
+    },
+    {
       path: "/home",
       element: <Home />,
+      // errorElement : <RouterErrorPage />,
+    },
+    {
+      path: "/forgot-password",
+      element: <ForgotPassword />,
+      // errorElement : <RouterErrorPage />,
+    },
+    {
+      path: "/otp-confirmation",
+      element: <OtpConfirmation />,
       // errorElement : <RouterErrorPage />,
     },
   ],

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Header from "../Header.jsx";
 import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
+import MainImage from "../../assets/HomePageImages/anastase-maragos-9dzWZQWZMdE-unsplash.jpg";
+import { Box } from "@mui/material";
+
 function Home() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -13,35 +15,52 @@ function Home() {
     refetch: refetchUsers,
   } = useFetchAllUsers();
 
-  // useEffect(() => {
-  //   if (!isVerified) {
-  //     navigate("/");
-  //   } else {
-  //     axios
-  //       .get("/user/getusers")
-  //       .then((response) => {
-  //         setUsers(response.data); // Update state with user data
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching user data", error);
-  //       });
-  //   }
-  // }, [isVerified, navigate]);
+  // console.log("getAllUsers", getAllUsers);
+
+  const isVerified = getAllUsers?.isVerified;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (isVerified === false) {
+          navigate("/");
+        } else {
+          // Assuming getAllUsers makes the API call internally
+          const usersData = await getAllUsers();
+          setUsers(usersData); // Update state with user data
+          console.log(usersData);
+        }
+      } catch (error) {
+        console.error("Error fetching user data", error);
+      }
+    };
+
+    fetchData();
+  }, [isVerified, navigate, getAllUsers]);
 
   return (
     <React.Fragment>
-      <Header />
-      <h1>Welcome to the Home Page</h1>
-      <p>This is some sample content for the home page.</p>
+      <Box
+        sx={{
+          height: "100vh",
+          backgroundImage: `url(${MainImage})`,
+          backgroundSize: "cover", // Adjust as needed (cover, contain, etc.)
+          backgroundRepeat: "no-repeat", // Adjust as needed (repeat, no-repeat, repeat-x, repeat-y)
+          backgroundPosition: "center",
+        }}
+      >
+        <Header />
+        <h1>Welcome to the Home Page</h1>
+        <p>This is some sample content for the home page.</p>
 
-      {/* Display user data */}
-      <h2>User Data</h2>
-      <ul>
-        {getAllUsers?.map((user) => (
-          <li key={user?._id}>{user?.username}</li>
-        ))}
-      </ul>
+        {/* Display user data */}
+        <h2>User Data</h2>
+        <ul>
+          {getAllUsers?.map((user) => (
+            <li key={user?._id}>{user?.username}</li>
+          ))}
+        </ul>
+      </Box>
     </React.Fragment>
   );
 }
