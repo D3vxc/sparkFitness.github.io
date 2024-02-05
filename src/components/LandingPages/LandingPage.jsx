@@ -1,6 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Footer";
+
 function LandingPage() {
   const navigate = useNavigate();
   return (
@@ -14,6 +16,8 @@ function LandingPage() {
       >
         register here
       </Box>
+
+      <Footer />
     </React.Fragment>
   );
 }
