@@ -2,11 +2,14 @@ import React from "react";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer";
+import Header from "../Header.jsx";
 
 function LandingPage() {
   const navigate = useNavigate();
   return (
     <React.Fragment>
+      <Header />
+
       <h1>Welcome to the Landing Page</h1>
 
       <Box

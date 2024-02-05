@@ -1,38 +1,35 @@
-import { Box } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-
+import LogoImage from "../assets/HomePageImages/Logo.svg";
 function Header() {
   return (
     <React.Fragment>
-      <Box
-        sx={{
-          height: "70px",
-          background: "red",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          // Additional background styles
-          width: "100%",
-          "--color": "rgba(114, 114, 114, 0.3)",
-          backgroundColor: "#191a1a",
-          backgroundImage:
-            "linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent), linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent)",
-          backgroundSize: "55px 55px",
-        }}
-      >
-        <Box component='img' src='' alt='logo' />
+      <Grid container>
+        <Grid item> 
+          <Box component="img" src={LogoImage} sx={{
+          }} />
+            <Typography>Spark Fitness</Typography>
+        </Grid>
 
-        <Box>
-          <Box component='button' sx={{ color: "white" }}>
-            Login
-          </Box>
-          <Box component='button' sx={{ color: "white" }}>
-            Register
-          </Box>
-        </Box>
-      </Box>
+
+
+        <Grid item>
+          <Typography sx={{...NavbarBtn}}>Home</Typography>
+          <Typography sx={{...NavbarBtn}}>About</Typography>
+          <Typography sx={{...NavbarBtn}}>Trainers</Typography>
+          <Typography sx={{...NavbarBtn}}>Contact</Typography>
+         
+        </Grid>
+          
+      </Grid>
     </React.Fragment>
   );
 }
 
 export default Header;
+
+const NavbarBtn = {
+  padding: "10px",
+  background : "blue",
+  
+}
