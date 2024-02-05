@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../Header.jsx";
 import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
 import MainImage from "../../assets/HomePageImages/anastase-maragos-9dzWZQWZMdE-unsplash.jpg";
 import { Box } from "@mui/material";
@@ -49,7 +48,6 @@ function Home() {
           backgroundPosition: "center",
         }}
       >
-        <Header />
         <h1>Welcome to the Home Page</h1>
         <p>This is some sample content for the home page.</p>
 
