@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header.jsx";
+import Home from "../Home/Home";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -10,15 +11,7 @@ function LandingPage() {
     <React.Fragment>
       <Header />
 
-      <h1>Welcome to the Landing Page</h1>
-
-      <Box
-        component='butotn'
-        variant='contained'
-        onClick={() => navigate("/register")}
-      >
-        register here
-      </Box>
+      <Home />
 
       <Footer />
     </React.Fragment>

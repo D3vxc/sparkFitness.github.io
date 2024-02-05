@@ -4,7 +4,7 @@ import React from "react";
 function Footer() {
   return (
     <React.Fragment>
-      <Box></Box>
+      <Box>footer here</Box>
     </React.Fragment>
   );
 }
