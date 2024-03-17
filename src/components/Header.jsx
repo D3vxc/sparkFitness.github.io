@@ -10,7 +10,8 @@ function Header() {
       <Grid
         container
         sx={{
-          background: "red",
+          background: "#F5F5F5",
+          height: "65px",
         }}
       >
         <Grid
@@ -26,12 +27,21 @@ function Header() {
             alignItems: "center",
             alignContent: "center",
           }}
+          onClick={() => navigate("/")}
         >
-          <Box component='img' src={LogoImage} sx={{ mx: "10px" }} />
+          <Box
+            component='img'
+            src={LogoImage}
+            sx={{
+              mx: "10px",
+              //  height: "30px", width: "30px"
+            }}
+          />
+
           <Typography
             sx={{
               fontFamily: "Inter",
-              fontSize: 30,
+              fontSize: "22px",
               fontWeight: 800,
               letterSpacing: "0em",
               textAlign: "left",
@@ -42,28 +52,46 @@ function Header() {
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
 
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
-          <Typography>Home</Typography>
+        <Grid
+          item
+          xs={1}
+          sm={1}
+          md={1}
+          lg={1}
+          xl={1}
+          sx={{ ...NavbarBtn }}
+          onClick={() => navigate("/home")}
+        >
+          <Typography sx={TextStyle}>Home</Typography>
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
-          <Typography>About</Typography>
+          <Typography sx={TextStyle}>About</Typography>
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
-          <Typography>Trainers</Typography>
+          <Typography sx={TextStyle}>Trainers</Typography>
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
-          <Typography>Schedule</Typography>
+          <Typography sx={TextStyle}>Schedule</Typography>
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
-          <Typography>Diet</Typography>
+          <Typography sx={TextStyle}>Diet</Typography>
         </Grid>
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
+        <Grid
+          item
+          xs={1}
+          sm={1}
+          md={1}
+          lg={1}
+          xl={1}
+          sx={{ ...NavbarBtn }}
+          onClick={() => navigate("/contact")}
+        >
           {" "}
-          <Typography>Contact</Typography>
+          <Typography sx={TextStyle}>Contact</Typography>
         </Grid>
 
         <Grid
@@ -82,7 +110,7 @@ function Header() {
           }}
           onClick={() => navigate("/login")}
         >
-          <Typography> Login</Typography>
+          <Typography sx={TextStyleForLogin}> Login</Typography>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -96,10 +124,23 @@ const NavbarBtn = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-
   fontFamily: "Poppins",
   fontSize: 20,
   fontWeight: 600,
   letterSpacing: "0em",
   textAlign: "left",
+};
+
+const TextStyle = {
+  fontFamily: "Poppins",
+  cursor: "pointer",
+  fontSize: "18px",
+  fontWeight: 600,
+};
+
+const TextStyleForLogin = {
+  fontFamily: "Poppins",
+  cursor: "pointer",
+  fontSize: "22px",
+  fontWeight: 600,
 };

@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header.jsx";
-import Home from "../Home/Home";
+import Home from "../Pages/Home.jsx";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function LandingPage() {
     <React.Fragment>
       <Header />
 
-      <Home />
+      {/* <Home /> */}
 
       <Footer />
     </React.Fragment>
