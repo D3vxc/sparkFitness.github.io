@@ -2,6 +2,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import LogoImage from "../assets/HomePageImages/Logo.svg";
 import { useNavigate } from "react-router-dom";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 function Header() {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Header() {
       <Grid
         container
         sx={{
-          background: "#F5F5F5",
+          background: "#FBFFFE",
           height: "65px",
         }}
       >
@@ -59,7 +60,12 @@ function Header() {
           md={1}
           lg={1}
           xl={1}
-          sx={{ ...NavbarBtn }}
+          sx={{
+            ...NavbarBtn,
+            "&:hover": {
+              background: "#F5F5F5",
+            },
+          }}
           onClick={() => navigate("/home")}
         >
           <Typography sx={TextStyle}>Home</Typography>

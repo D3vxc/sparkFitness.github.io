@@ -11,7 +11,7 @@ function Footer() {
           height: "200px",
         }}
       >
-        <Grid container sx={{ background: "red" }}>
+        <Grid container sx={{ height: "100%" }}>
           <Grid
             item
             xs={4.5}
@@ -19,33 +19,44 @@ function Footer() {
             md={4.5}
             lg={4.5}
             xl={4.5}
-            sx={{ background: "white" }}
+            sx={{ background: "", p: 5 }}
           >
-            <Box sx={{ display: "flex" }}>
-              <Box
-                component='img'
-                src={LogoImage}
-                sx={{
-                  mx: "10px",
-                  //  height: "30px", width: "30px"
-                }}
-              />{" "}
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                  component='img'
+                  src={LogoImage}
+                  sx={
+                    {
+                      //  height: "30px", width: "30px"
+                    }
+                  }
+                />{" "}
+                <Typography
+                  sx={{
+                    mx: "10px",
+                    color: "#FBFFFE",
+                    fontFamily: "Inter",
+                    fontSize: "22px",
+                    fontWeight: 800,
+                    letterSpacing: "0em",
+                    textAlign: "left",
+                  }}
+                >
+                  Spark Fitness
+                </Typography>
+              </Box>
               <Typography
                 sx={{
-                  fontFamily: "Inter",
-                  fontSize: "22px",
-                  fontWeight: 800,
-                  letterSpacing: "0em",
-                  textAlign: "left",
+                  fontFamily: "poppins",
+                  fontSize: "16px",
+                  color: "#FBFFFE",
                 }}
               >
-                Spark Fitness
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Quidem, esse aperiam error?
               </Typography>
             </Box>
-            <Typography>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem,
-              esse aperiam error?
-            </Typography>
           </Grid>
           <Grid
             item

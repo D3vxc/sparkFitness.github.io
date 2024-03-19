@@ -56,53 +56,72 @@ function Home() {
           alignItems: "center",
         }}
       >
-        {/* Shadow Text */}
         <Typography
           sx={{
             fontFamily: "Inter",
-            fontSize: 80,
-            fontWeight: 800,
-            letterSpacing: "0em",
-            textAlign: "center",
-            color: "#000", // Shadow color
-            textShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)", // Shadow effect
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: -1, // Push the shadow text behind the main text
-            width: "700px",
-          }}
-        >
-          Keep Your Body Fit & Strong
-        </Typography>
-
-        {/* Main Text */}
-        <Typography
-          sx={{
-            fontFamily: "Inter",
-            fontSize: 80,
+            fontSize: "70px",
             fontWeight: 800,
             letterSpacing: "0em",
             textAlign: "center",
             color: "#FFFFFF", // Text color
-            width: "700px",
+            width: "600px",
             position: "relative",
             textShadow:
-              "-7px 7px 0 rgba(255, 255, 255, 0.5), -7px 7px 0 rgba(2, 2, 5, 0.5)", // Shadow effect with transparent colors
+              "-7px 7px 0 rgba(23, 29, 36, 1), -7.1px 7.1px 0 rgba(255, 255, 255, 1)",
+            lineHeight: "95px",
           }}
         >
           Keep Your Body Fit & Strong
         </Typography>
 
-        <h2>User Data</h2>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "auto",
+            height: "50px",
+            mt: "20px",
+            gap: "10px",
+          }}
+        >
+          <Box sx={ButtonStyle}>Start Today</Box>
+          <Box sx={ButtonStyle}>About Us</Box>
+        </Box>
+        {/* <h2>User Data</h2>
         <ul>
           {getAllUsers?.map((user) => (
             <li key={user?._id}>{user?.name}</li>
           ))}
-        </ul>
+        </ul> */}
       </Box>
+      <Box
+        sx={{
+          background: "#FBFFFE",
+        }}
+      ></Box>
     </React.Fragment>
   );
 }
 
 export default Home;
+
+const ButtonStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  fontFamily: "poppins",
+  fontSize: "18px",
+  fontWeight: 500,
+  width: "180px",
+  height: "50px",
+  border: "2px solid #FBFFFE",
+  background: "transparent",
+  color: "#FBFFFE",
+  "&:hover": {
+    border: "2px solid transparent",
+    background: "#A1F65E",
+    color: "#1B1B1E",
+    cursor: "pointer",
+  },
+};
