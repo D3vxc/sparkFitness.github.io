@@ -98,8 +98,117 @@ function Home() {
       <Box
         sx={{
           background: "#FBFFFE",
+          height: "90vh",
+          width: "90%",
+          mx: "auto",
         }}
-      ></Box>
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box sx={{}}>
+            <Typography
+              sx={{
+                fontFamilu: "poppins",
+                color: "#524FF5",
+                fontSize: "16px",
+                fontWeight: 600,
+                letterSpacing: "5px",
+                textTransform: "uppercase",
+              }}
+            >
+              our fitness training
+            </Typography>
+            <Typography
+              sx={{
+                fontFamilu: "poppins",
+                color: "#000",
+                fontSize: "35px",
+                fontWeight: 700,
+              }}
+            >
+              Upcoming Classes
+            </Typography>
+          </Box>
+
+          <Typography
+            sx={{
+              fontFamily: "poppins",
+              fontSize: "200px",
+              fontWeight: 800,
+              color: "#FBFFFE", // Keeps text color black
+              backgroundColor: "#FBFFFE", // Sets the background color.
+              // Simulates a border effect around each letter with textShadow
+              textShadow: `
+      -1px -1px 0 #E3E3E3,  
+       1px -1px 0 #E3E3E3,
+      -1px  1px 0 #E3E3E3,
+       1px  1px 0 #E3E3E3`,
+            }}
+          >
+            CLASSES
+          </Typography>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          background: "#1C2229",
+          width: "100%",
+          height: "60px",
+          display: "flex",
+          overflow: "hidden", // Hide the overflowed text
+          position: "relative", // For the absolute positioning of the child
+        }}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: "poppins",
+            fontSize: "30px",
+            color: "#FBFFFE",
+            textTransform: "uppercase",
+            fontWeight: 800,
+            letterSpacing: "1em",
+            whiteSpace: "nowrap", // Ensure text is in one line
+            animation: "marquee 20s linear infinite", // Adjust duration as needed
+            "@keyframes marquee": {
+              "0%": { transform: "translateX(100%)" },
+              "100%": { transform: "translateX(-100%)" },
+            },
+          }}
+        >
+          focus on your{" "}
+          <Typography
+            sx={{
+              // position: "absolute",
+              // width: "100%",
+              // height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "poppins",
+              fontSize: "30px",
+              color: "#A1F65E",
+              textTransform: "uppercase",
+              fontWeight: 800,
+              letterSpacing: "1em",
+            }}
+          >
+            ㅤfitnessㅤ
+          </Typography>{" "}
+          not your loss
+        </Box>
+      </Box>
     </React.Fragment>
   );
 }

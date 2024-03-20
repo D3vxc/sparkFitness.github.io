@@ -51,7 +51,7 @@ function Header() {
             Spark Fitness
           </Typography>
         </Grid>
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1}></Grid>
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3}></Grid>
 
         <Grid
           item
@@ -73,16 +73,16 @@ function Header() {
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
-          <Typography sx={TextStyle}>Trainers</Typography>
+          <Typography sx={TextStyle}> Products</Typography>
         </Grid>
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
+        {/* <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
           <Typography sx={TextStyle}>Schedule</Typography>
         </Grid>
         <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
           <Typography sx={TextStyle}>Diet</Typography>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={1}
@@ -147,7 +147,9 @@ const TextStyle = {
   "&:hover": {
     fontSize: "20px",
     transition: "0.5s",
-    background: "#F5F5F5",
+    background: "#E3E3E3",
+    display: "flex",
+    flexWrap: "wrap",
   },
 };
 
