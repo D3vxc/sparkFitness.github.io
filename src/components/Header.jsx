@@ -62,9 +62,6 @@ function Header() {
           xl={1}
           sx={{
             ...NavbarBtn,
-            "&:hover": {
-              background: "#F5F5F5",
-            },
           }}
           onClick={() => navigate("/home")}
         >
@@ -131,7 +128,7 @@ const NavbarBtn = {
   justifyContent: "center",
   alignItems: "center",
   fontFamily: "Poppins",
-  fontSize: 20,
+  fontSize: "16px",
   fontWeight: 600,
   letterSpacing: "0em",
   textAlign: "left",
@@ -140,8 +137,18 @@ const NavbarBtn = {
 const TextStyle = {
   fontFamily: "Poppins",
   cursor: "pointer",
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: 600,
+  height: "100%",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "&:hover": {
+    fontSize: "20px",
+    transition: "0.5s",
+    background: "#F5F5F5",
+  },
 };
 
 const TextStyleForLogin = {
