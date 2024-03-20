@@ -67,7 +67,16 @@ function Header() {
         >
           <Typography sx={TextStyle}>Home</Typography>
         </Grid>
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
+        <Grid
+          item
+          xs={1}
+          sm={1}
+          md={1}
+          lg={1}
+          xl={1}
+          sx={{ ...NavbarBtn }}
+          onClick={() => navigate("/about")}
+        >
           {" "}
           <Typography sx={TextStyle}>About</Typography>
         </Grid>
@@ -91,7 +100,7 @@ function Header() {
           lg={1}
           xl={1}
           sx={{ ...NavbarBtn }}
-          onClick={() => navigate("/contact")}
+          onClick={() => navigate("/contactus")}
         >
           {" "}
           <Typography sx={TextStyle}>Contact</Typography>

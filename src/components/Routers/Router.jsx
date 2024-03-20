@@ -9,6 +9,7 @@ import Home from "../Pages/Home";
 import ForgotPassword from "../Pages/ForgotPassword";
 import OtpConfirmation from "../Pages/OtpConfirmation";
 import ContactUs from "../Pages/ContactUs.jsx";
+import About from "../Pages/About.jsx";
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -34,6 +35,23 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
+      <Route
+        path='/about'
+        element={
+          <HeaderFooterLayout>
+            <About />
+          </HeaderFooterLayout>
+        }
+      />
+      <Route
+        path='/contactus'
+        element={
+          <HeaderFooterLayout>
+            <ContactUs />
+          </HeaderFooterLayout>
+        }
+      />
+
       <Route path='/forgot-password' element={<ForgotPassword />} />
       <Route path='/otp-confirmation' element={<OtpConfirmation />} />
       <Route
