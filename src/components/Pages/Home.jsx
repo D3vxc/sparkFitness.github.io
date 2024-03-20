@@ -18,6 +18,16 @@ function Home() {
 
   const isVerified = getAllUsers?.isVerified;
 
+  const ClassesData = [
+    {
+      image:
+        "https://drive.google.com/file/d/1qTJlKTyiIXPuzWBnrOHlCc5GweNR4k5e/view?usp=sharing",
+      title: "Yoga",
+      description:
+        "Yoga is a group of physical, mental, and spiritual practices or disciplines that originated in ancient India.",
+    },
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -109,6 +119,8 @@ function Home() {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            height: "300px",
+            position: "relative",
           }}
         >
           <Box sx={{}}>
@@ -136,25 +148,73 @@ function Home() {
             </Typography>
           </Box>
 
-          <Typography
+          <Box
             sx={{
-              fontFamily: "poppins",
-              fontSize: "200px",
-              fontWeight: 800,
-              color: "#FBFFFE", // Keeps text color black
-              backgroundColor: "#FBFFFE", // Sets the background color.
-              // Simulates a border effect around each letter with textShadow
-              textShadow: `
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              sx={{
+                position: "absolute",
+                right: "-5%",
+                fontFamily: "poppins",
+                fontSize: "200px",
+                fontWeight: 800,
+                color: "#FBFFFE",
+                backgroundColor: "#FBFFFE",
+                textShadow: `
       -1px -1px 0 #E3E3E3,  
        1px -1px 0 #E3E3E3,
       -1px  1px 0 #E3E3E3,
        1px  1px 0 #E3E3E3`,
-            }}
-          >
-            CLASSES
-          </Typography>
+              }}
+            >
+              CLASSES
+            </Typography>
+            <Box
+              sx={{
+                position: "absolute",
+                right: "17%",
+                fontFamily: "poppins",
+                fontSize: "16px",
+                fontWeight: 500,
+                color: "#FBFFFE",
+                background: "#1C2229",
+                width: "150px",
+                height: "50px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                "&:hover": {
+                  background: "transparent",
+                  cursor: "pointer",
+                  color: "#1B1B1E",
+                  border: "1px solid #1B1B1E",
+                  backdropFilter: "blur(10px)",
+                },
+              }}
+            >
+              More Class
+            </Box>
+          </Box>
+        </Box>
+
+        <Box>
+          {/* {ClassesData?.map((item, index) => {
+            console.log(item);
+            return (
+              <Box>
+                <Box component='img' src={item?.image} />
+                <Typography>{item?.title}</Typography>
+                <Typography>{item?.description}</Typography>
+              </Box>
+            );
+          })} */}
         </Box>
       </Box>
+
       <Box
         sx={{
           background: "#1C2229",
