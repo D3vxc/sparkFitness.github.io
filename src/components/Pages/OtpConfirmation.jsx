@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useHistory } from "react-router-dom"; // Import useHistory from React Router
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
+import { useFetchAllUsers } from "../Hooks/GetAllUsers";
 import { useNavigate } from "react-router-dom";
 
 function OtpConfirmation() {

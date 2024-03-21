@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFetchAllUsers } from "../Hooks/users/GetAllUsers";
 import MainImage from "../../assets/HomePageImages/Banner.svg";
+import { useFetchAllUsers } from "../Hooks/GetAllUsers";
+import { useFetchAllClasses } from "../Hooks/getAllClasses";
 import { Box, Typography } from "@mui/material";
 
 function Home() {
@@ -18,15 +19,13 @@ function Home() {
 
   const isVerified = getAllUsers?.isVerified;
 
-  const ClassesData = [
-    {
-      image:
-        "https://drive.google.com/file/d/1qTJlKTyiIXPuzWBnrOHlCc5GweNR4k5e/view?usp=sharing",
-      title: "Yoga",
-      description:
-        "Yoga is a group of physical, mental, and spiritual practices or disciplines that originated in ancient India.",
-    },
-  ];
+  const {
+    data: allClasses,
+    isLoading: classesLoading,
+    refetch: refetchClasses,
+  } = useFetchAllClasses();
+
+  console.log("allClasses", allClasses);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -202,16 +201,16 @@ function Home() {
         </Box>
 
         <Box>
-          {/* {ClassesData?.map((item, index) => {
+          {allClasses?.map((item, index) => {
             console.log(item);
             return (
               <Box>
                 <Box component='img' src={item?.image} />
-                <Typography>{item?.title}</Typography>
+                <Typography>{item?.name}</Typography>
                 <Typography>{item?.description}</Typography>
               </Box>
             );
-          })} */}
+          })}
         </Box>
       </Box>
 
