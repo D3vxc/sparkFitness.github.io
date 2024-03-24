@@ -10,6 +10,8 @@ import ForgotPassword from "../Pages/ForgotPassword";
 import OtpConfirmation from "../Pages/OtpConfirmation";
 import ContactUs from "../Pages/ContactUs.jsx";
 import About from "../Pages/About.jsx";
+import Classes from "../Pages/Classes.jsx";
+import { getToken } from "../../utils/token.js";
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -24,11 +26,11 @@ const NoHeaderFooterLayout = ({ children }) => <main>{children}</main>;
 const MainRouter = () => (
   <Router>
     <Routes>
-      <Route path='/' element={<LandingPage />} />
+      {/* <Route path='/' element={<Home />} /> */}
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route
-        path='/home'
+        path='/'
         element={
           <HeaderFooterLayout>
             <Home />
@@ -48,6 +50,14 @@ const MainRouter = () => (
         element={
           <HeaderFooterLayout>
             <ContactUs />
+          </HeaderFooterLayout>
+        }
+      />
+      <Route
+        path='/classes'
+        element={
+          <HeaderFooterLayout>
+            <Classes />
           </HeaderFooterLayout>
         }
       />

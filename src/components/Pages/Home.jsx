@@ -4,6 +4,10 @@ import MainImage from "../../assets/HomePageImages/Banner.svg";
 import { useFetchAllUsers } from "../Hooks/GetAllUsers";
 import { useFetchAllClasses } from "../Hooks/getAllClasses";
 import { Box, Typography } from "@mui/material";
+import AboutImageOne from "../../assets/HomePageImages/AboutImageOne.svg";
+import AboutImageTwo from "../../assets/HomePageImages/AboutImageTwo.svg";
+import AboutImageThree from "../../assets/HomePageImages/AboutImageThree.svg";
+import BackgroundPattern from "../../assets/HomePageImages/BackgroundPattern.svg";
 
 function Home() {
   const navigate = useNavigate();
@@ -46,72 +50,307 @@ function Home() {
     fetchData();
   }, [isVerified, navigate, getAllUsers]);
 
+  function truncateWithEllipsis(text, maxLength) {
+    // If the text is shorter than the maxLength, return it as is.
+    // If it's longer, truncate it and add '...'.
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  }
+
   return (
     <React.Fragment>
-      <Box
-        sx={{
-          backgroundImage: `url(${MainImage})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          height: "80vh",
-          width: "100%",
-          position: "relative",
-          color: "white",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          sx={{
-            fontFamily: "Inter",
-            fontSize: "70px",
-            fontWeight: 800,
-            letterSpacing: "0em",
-            textAlign: "center",
-            color: "#FFFFFF", // Text color
-            width: "600px",
-            position: "relative",
-            textShadow:
-              "-7px 7px 0 rgba(23, 29, 36, 1), -7.1px 7.1px 0 rgba(255, 255, 255, 1)",
-            lineHeight: "95px",
-          }}
-        >
-          Keep Your Body Fit & Strong
-        </Typography>
-
+      <Box sx={{ background: "#FBFFFE" }}>
         <Box
           sx={{
+            backgroundImage: `url(${MainImage})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            height: "80vh",
+            width: "100%",
+            position: "relative",
+            color: "white",
+            textAlign: "center",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: "auto",
-            height: "50px",
-            mt: "20px",
-            gap: "10px",
           }}
         >
-          <Box sx={ButtonStyle}>Start Today</Box>
-          <Box sx={ButtonStyle}>About Us</Box>
-        </Box>
-        {/* <h2>User Data</h2>
+          <Typography
+            sx={{
+              fontFamily: "Inter",
+              fontSize: "70px",
+              fontWeight: 800,
+              letterSpacing: "0em",
+              textAlign: "center",
+              color: "#FFFFFF", // Text color
+              width: "600px",
+              position: "relative",
+              textShadow:
+                "-7px 7px 0 rgba(23, 29, 36, 1), -7.1px 7.1px 0 rgba(255, 255, 255, 1)",
+              lineHeight: "95px",
+            }}
+          >
+            Keep Your Body Fit & Strong
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "auto",
+              height: "50px",
+              mt: "20px",
+              gap: "10px",
+            }}
+          >
+            <Box sx={ButtonStyle}>Start Today</Box>
+            <Box sx={ButtonStyle} onClick={() => navigate("/about")}>
+              About Us
+            </Box>
+          </Box>
+          {/* <h2>User Data</h2>
         <ul>
           {getAllUsers?.map((user) => (
             <li key={user?._id}>{user?.name}</li>
           ))}
         </ul> */}
-      </Box>
-      <Box
-        sx={{
-          background: "#FBFFFE",
-          height: "90vh",
-          width: "90%",
-          mx: "auto",
-        }}
-      >
+        </Box>
+        <Box
+          sx={{
+            background: "#FBFFFE",
+            height: "auto",
+            width: "80%",
+            mx: "auto",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              height: "300px",
+              position: "relative",
+            }}
+          >
+            <Box
+              sx={{
+                width: "80%",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamilu: "poppins",
+                  color: "#524FF5",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  letterSpacing: "5px",
+                  textTransform: "uppercase",
+                }}
+              >
+                our fitness training
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamilu: "poppins",
+                  color: "#000",
+                  fontSize: "35px",
+                  fontWeight: 700,
+                }}
+              >
+                Upcoming Classes
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  position: "absolute",
+                  right: "-17%",
+                  fontFamily: "poppins",
+                  fontSize: "230px",
+                  fontWeight: 800,
+                  color: "#FBFFFE",
+                  backgroundColor: "transparent",
+                  textShadow: `
+      -1px -1px 0 #E3E3E3,  
+       1px -1px 0 #E3E3E3,
+      -1px  1px 0 #E3E3E3,
+       1px  1px 0 #E3E3E3`,
+                  overflow: "hidden", // Hide the overflowed text
+                }}
+              >
+                CLASSES
+              </Typography>
+              <Box
+                sx={{
+                  position: "absolute",
+                  right: "2.5%",
+                  fontFamily: "poppins",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  color: "#FBFFFE",
+                  background: "#1C2229",
+                  width: "150px",
+                  height: "50px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  "&:hover": {
+                    background: "transparent",
+                    cursor: "pointer",
+                    color: "#1B1B1E",
+                    border: "1px solid #1B1B1E",
+                    backdropFilter: "blur(10px)",
+                  },
+                }}
+                onClick={() => navigate("/classes")}
+              >
+                More Class
+              </Box>
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100%",
+              height: "auto",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              pb: "150px",
+            }}
+          >
+            {allClasses?.slice(0, 3)?.map((item, index) => {
+              console.log(item);
+              return (
+                <Box
+                  sx={{
+                    width: "30%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    // padding: "20px",
+                  }}
+                  key={index}
+                >
+                  <Box
+                    component='img'
+                    src={item?.image}
+                    sx={{ height: "320px", width: "auto" }}
+                  />
+                  <Box
+                    sx={{
+                      width: "92%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        fontFamilu: "poppins",
+                        color: "#000",
+                        fontSize: "24px",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {item?.name}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFamily: "poppins",
+                        color: "#000",
+                        fontSize: "16px",
+                        fontWeight: 500,
+                        width: "100%",
+                        whiteSpace: "pre-line", // CSS property to collapse whitespace and preserve newlines
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        maxHeight: "50px",
+                        lineHeight: "24px", // Ensure the line height is consistent
+                      }}
+                    >
+                      {item?.description.length > 170
+                        ? `${item?.description.substring(0, 170)}...`
+                        : item?.description}
+                    </Typography>
+                  </Box>
+                </Box>
+              );
+            })}
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            background: "#1C2229",
+            width: "100%",
+            height: "100px",
+            display: "flex",
+            overflow: "hidden", // Hide the overflowed text
+            position: "relative", // For the absolute positioning of the child
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "poppins",
+              fontSize: "50px",
+              color: "#FBFFFE",
+              textTransform: "uppercase",
+              fontWeight: 600,
+              letterSpacing: "10px",
+              whiteSpace: "nowrap", // Ensure text is in one line
+              animation: "marquee 20s linear infinite", // Adjust duration as needed
+              "@keyframes marquee": {
+                "0%": { transform: "translateX(100%)" },
+                "100%": { transform: "translateX(-100%)" },
+              },
+            }}
+          >
+            focus on your{" "}
+            <span
+              style={{
+                // position: "absolute",
+                // width: "100%",
+                // height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "poppins",
+                fontSize: "50px",
+                color: "#A1F65E",
+                textTransform: "uppercase",
+                fontWeight: 600,
+                letterSpacing: "10px",
+              }}
+            >
+              &nbsp; fitness &nbsp;
+            </span>{" "}
+            not your loss
+          </Box>
+        </Box>
+
         <Box
           sx={{
             display: "flex",
@@ -120,9 +359,18 @@ function Home() {
             alignItems: "center",
             height: "300px",
             position: "relative",
+            width: "80%",
+            mx: "auto",
           }}
         >
-          <Box sx={{}}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              flexDirection: "column",
+            }}
+          >
             <Typography
               sx={{
                 fontFamilu: "poppins",
@@ -133,7 +381,7 @@ function Home() {
                 textTransform: "uppercase",
               }}
             >
-              our fitness training
+              About
             </Typography>
             <Typography
               sx={{
@@ -141,9 +389,25 @@ function Home() {
                 color: "#000",
                 fontSize: "35px",
                 fontWeight: 700,
+                lineHeight: "40px",
               }}
             >
-              Upcoming Classes
+              Respect your body, <br /> it's the only one you get
+            </Typography>
+            <Typography
+              sx={{
+                fontFamilu: "poppins",
+                color: "#6A6A6A",
+                fontSize: "16px",
+                fontWeight: 500,
+                width: "40%",
+                lineHeight: "20px",
+                mt: "20px",
+              }}
+            >
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. point
+              of using Lorem Ipsum is
             </Typography>
           </Box>
 
@@ -159,10 +423,10 @@ function Home() {
                 position: "absolute",
                 right: "-5%",
                 fontFamily: "poppins",
-                fontSize: "200px",
+                fontSize: "230px",
                 fontWeight: 800,
                 color: "#FBFFFE",
-                backgroundColor: "#FBFFFE",
+                background: "transparent",
                 textShadow: `
       -1px -1px 0 #E3E3E3,  
        1px -1px 0 #E3E3E3,
@@ -170,103 +434,162 @@ function Home() {
        1px  1px 0 #E3E3E3`,
               }}
             >
-              CLASSES
+              About
             </Typography>
-            <Box
-              sx={{
-                position: "absolute",
-                right: "17%",
-                fontFamily: "poppins",
-                fontSize: "16px",
-                fontWeight: 500,
-                color: "#FBFFFE",
-                background: "#1C2229",
-                width: "150px",
-                height: "50px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                "&:hover": {
-                  background: "transparent",
-                  cursor: "pointer",
-                  color: "#1B1B1E",
-                  border: "1px solid #1B1B1E",
-                  backdropFilter: "blur(10px)",
-                },
-              }}
-            >
-              More Class
-            </Box>
           </Box>
         </Box>
 
-        <Box>
-          {allClasses?.map((item, index) => {
-            console.log(item);
-            return (
-              <Box>
-                <Box component='img' src={item?.image} />
-                <Typography>{item?.name}</Typography>
-                <Typography>{item?.description}</Typography>
-              </Box>
-            );
-          })}
-        </Box>
-      </Box>
-
-      <Box
-        sx={{
-          background: "#1C2229",
-          width: "100%",
-          height: "60px",
-          display: "flex",
-          overflow: "hidden", // Hide the overflowed text
-          position: "relative", // For the absolute positioning of the child
-        }}
-      >
         <Box
           sx={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
+            width: "80%",
+            mx: "auto",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "poppins",
-            fontSize: "30px",
-            color: "#FBFFFE",
-            textTransform: "uppercase",
-            fontWeight: 800,
-            letterSpacing: "1em",
-            whiteSpace: "nowrap", // Ensure text is in one line
-            animation: "marquee 20s linear infinite", // Adjust duration as needed
-            "@keyframes marquee": {
-              "0%": { transform: "translateX(100%)" },
-              "100%": { transform: "translateX(-100%)" },
-            },
+            pb: "50px",
           }}
         >
-          focus on your{" "}
-          <Typography
+          <Box
             sx={{
-              // position: "absolute",
-              // width: "100%",
-              // height: "100%",
+              width: "100%",
+              // mx: "auto",
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "poppins",
-              fontSize: "30px",
-              color: "#A1F65E",
-              textTransform: "uppercase",
-              fontWeight: 800,
-              letterSpacing: "1em",
+              flexDirection: "column",
+              gap: "20px",
             }}
           >
-            ㅤfitnessㅤ
-          </Typography>{" "}
-          not your loss
+            <Box
+              sx={{
+                background: "#F3F3F3",
+                width: "450px",
+                display: "flex",
+                padding: "20px",
+              }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  flexDirection: "column",
+                  width: "80%",
+                  padding: "20px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamilu: "poppins",
+                    color: "#000",
+                    fontSize: "26px",
+                    fontWeight: 700,
+                  }}
+                >
+                  Motivation
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamilu: "poppins",
+                    color: "#6A6A6A",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    width: "auto",
+                    lineHeight: "20px",
+                  }}
+                >
+                  It is a long established fact that a reader will be distracted
+                </Typography>
+              </Box>
+              <Box
+                component='img'
+                src={AboutImageOne}
+                sx={{
+                  height: "130px",
+                  width: "auto",
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                background: "#F3F3F3",
+                width: "450px",
+                display: "flex",
+                padding: "20px",
+              }}
+            >
+              <Box
+                component='img'
+                src={AboutImageTwo}
+                sx={{
+                  height: "130px",
+                  width: "auto",
+                }}
+              />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "flex-start",
+                  flexDirection: "column",
+                  width: "80%",
+                  padding: "20px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamilu: "poppins",
+                    color: "#000",
+                    fontSize: "26px",
+                    fontWeight: 700,
+                  }}
+                >
+                  Inspire
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamilu: "poppins",
+                    color: "#6A6A6A",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    width: "auto",
+                    lineHeight: "20px",
+                  }}
+                >
+                  It is a long established fact that a reader will be distracted
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
+            <Box
+              component='img'
+              src={BackgroundPattern}
+              sx={{
+                position: "absolute",
+                right: "100px",
+                bottom: "0",
+                height: "500px",
+                width: "auto",
+              }}
+            />
+            <Box
+              component='img'
+              src={AboutImageThree}
+              sx={{
+                position: "absolute",
+                right: "185px",
+                height: "465px",
+                top: "0",
+              }}
+            />
+          </Box>
         </Box>
+        <Box>ewofhiewo</Box>
       </Box>
     </React.Fragment>
   );

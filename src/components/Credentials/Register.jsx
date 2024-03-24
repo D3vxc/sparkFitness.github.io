@@ -54,7 +54,7 @@ function Register() {
         });
 
         // Redirect to login page or any other desired page
-        navigate("/home");
+        navigate("/");
       } else {
         // Show an error toast message for registration failure
         toast.error("Registration failed", {

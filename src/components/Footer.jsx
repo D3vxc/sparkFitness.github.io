@@ -11,6 +11,7 @@ import three from "../assets/FooterImages/3.svg";
 import four from "../assets/FooterImages/4.svg";
 import five from "../assets/FooterImages/5.svg";
 import six from "../assets/FooterImages/6.svg";
+import { useNavigate } from "react-router-dom";
 
 const FooterImages = [
   {
@@ -39,6 +40,8 @@ const FooterImages = [
   },
 ];
 function Footer() {
+  const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <Box
@@ -197,10 +200,26 @@ function Footer() {
             >
               <Typography sx={UtilityPagesMainText}>Utility Pages</Typography>
               <Box sx={utilsPageLinks}>
+                <Typography
+                  sx={UtilityPagesSubText}
+                  onClick={() => navigate("/")}
+                >
+                  Home
+                </Typography>
                 <Typography sx={UtilityPagesSubText}>Privacy Policy</Typography>
-                <Typography sx={UtilityPagesSubText}>Contact</Typography>
+                <Typography
+                  sx={UtilityPagesSubText}
+                  onClick={() => navigate("/contactus")}
+                >
+                  Contact
+                </Typography>
                 <Typography sx={UtilityPagesSubText}>Help us</Typography>
-                <Typography sx={UtilityPagesSubText}>About</Typography>
+                <Typography
+                  sx={UtilityPagesSubText}
+                  onClick={() => navigate("/about")}
+                >
+                  About
+                </Typography>
               </Box>
             </Grid>
             <Grid

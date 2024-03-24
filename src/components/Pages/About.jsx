@@ -1,7 +1,13 @@
 import React from "react";
+import MainBanner from "../components/MainBanner";
+// import Banner from "../components/Banner";
 
 const About = () => {
-  return <React.Fragment>this is the about page</React.Fragment>;
+  return (
+    <>
+      <MainBanner mainText={"About Us"} />
+    </>
+  );
 };
 
 export default About;

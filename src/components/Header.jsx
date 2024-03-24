@@ -28,13 +28,14 @@ function Header() {
             alignItems: "center",
             alignContent: "center",
           }}
-          onClick={() => navigate("/")}
         >
           <Box
             component='img'
             src={LogoImage}
+            onClick={() => navigate("/")}
             sx={{
               mx: "10px",
+              cursor: "pointer",
               //  height: "30px", width: "30px"
             }}
           />
@@ -46,7 +47,9 @@ function Header() {
               fontWeight: 800,
               letterSpacing: "0em",
               textAlign: "left",
+              cursor: "pointer",
             }}
+            onClick={() => navigate("/")}
           >
             Spark Fitness
           </Typography>
@@ -63,7 +66,7 @@ function Header() {
           sx={{
             ...NavbarBtn,
           }}
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/")}
         >
           <Typography sx={TextStyle}>Home</Typography>
         </Grid>
@@ -156,7 +159,8 @@ const TextStyle = {
   "&:hover": {
     fontSize: "20px",
     transition: "0.5s",
-    background: "#E3E3E3",
+    // background: "#E3E3E3",
+    textTransform: " underline",
     display: "flex",
     flexWrap: "wrap",
   },
@@ -167,4 +171,7 @@ const TextStyleForLogin = {
   cursor: "pointer",
   fontSize: "22px",
   fontWeight: 600,
+  "&:hover": {
+    transition: "0.5s",
+  },
 };

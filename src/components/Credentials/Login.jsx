@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import "./YourStyleSheet.css"; // Replace with the actual path to your CSS file
 import { Box, Typography, Grid } from "@mui/material";
+import Cookies from "js-cookie";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ function Login() {
 
       // Make an HTTP POST request to the login API endpoint with user data
       const response = await axios.post("/user/login", data);
+      console.log("response", response);
+      Cookies.set("token", response.data.token);
 
       // Check the response status code to determine success or failure
       if (response.status === 200) {
@@ -44,7 +47,7 @@ function Login() {
           theme: "light",
         });
         console.log("User logged in successfully");
-        navigate("/home");
+        navigate("/");
       } else {
         // Show an error toast message for invalid credentials
         toast("🦄 Invalid credentials!", {
