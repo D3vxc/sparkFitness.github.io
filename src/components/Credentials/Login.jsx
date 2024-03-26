@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./YourStyleSheet.css"; // Replace with the actual path to your CSS file
 import { Box, Typography, Grid } from "@mui/material";
 import Cookies from "js-cookie";
+import logo from "../../assets/HomePageImages/Logo.svg";
 
 function Login() {
   const navigate = useNavigate();
@@ -88,75 +89,116 @@ function Login() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          height: "100vh",
-          background: "#212121",
+          height: "100vh", // Full viewport height
+          width: "100vw", // Full viewport width
+          background: "#FBFFFE", // Optional: Background for the fullscreen container
         }}
       >
-        <div className='form-container'>
-          <form className='form' onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className='form-group'>
-              <label htmlFor='email'>Email</label>
-              <Controller
-                name='email'
-                control={control}
-                defaultValue=''
-                rules={{
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  },
-                }}
-                render={({ field }) => (
-                  <input {...field} required type='text' id='email' />
-                )}
-              />
-              {errors.email && (
-                <p className='error-message'>{errors.email.message}</p>
-              )}
-            </div>
-            <div className='form-group'>
-              <label htmlFor='password'>Password</label>
-              <Controller
-                name='password'
-                control={control}
-                defaultValue=''
-                rules={{
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters",
-                  },
-                }}
-                render={({ field }) => (
-                  <input {...field} required type='password' id='password' />
-                )}
-              />
-              {errors.password && (
-                <p className='error-message'>{errors.password.message}</p>
-              )}
-            </div>
-            <button
-              type='submit'
-              className='form-submit-btn'
-              disabled={isLoading}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "500px",
+            height: "650px",
+            background: "#A1F65E",
+            flexDirection: "column",
+            borderRadius: "20px",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component='img'
+              src={logo}
+              sx={{ height: "50px", width: "50px" }}
+            />
+            <Typography
+              sx={{
+                fontFamily: "poppins",
+                fontSize: "22px",
+                fontWeight: 800,
+                letterSpacing: "0em",
+                textAlign: "left",
+                cursor: "pointer",
+              }}
             >
-              {isLoading ? "Logging in..." : "Sign In"}
-            </button>
-          </form>
-          <Grid container justifyContent='flex-end'>
-            <Grid item>
-              <Typography
-                variant='body2'
-                onClick={() => {
-                  navigate("/register");
-                }}
+              Spark Fitness
+            </Typography>
+          </Box>
+          <div className='form-container'>
+            <form className='form' onSubmit={handleSubmit(onSubmit)} noValidate>
+              <div className='form-group'>
+                <label htmlFor='email'>Email</label>
+                <Controller
+                  name='email'
+                  control={control}
+                  defaultValue=''
+                  rules={{
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <input {...field} required type='text' id='email' />
+                  )}
+                />
+                {errors.email && (
+                  <p className='error-message'>{errors.email.message}</p>
+                )}
+              </div>
+              <div className='form-group'>
+                <label htmlFor='password'>Password</label>
+                <Controller
+                  name='password'
+                  control={control}
+                  defaultValue=''
+                  rules={{
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <input {...field} required type='password' id='password' />
+                  )}
+                />
+                {errors.password && (
+                  <p className='error-message'>{errors.password.message}</p>
+                )}
+              </div>
+              <button
+                type='submit'
+                className='form-submit-btn'
+                disabled={isLoading}
+                placeholder='example@gmail.com'
               >
-                Already have an account? Sign in
-              </Typography>
+                {isLoading ? "Logging in..." : "Sign In"}
+              </button>
+            </form>
+            <Grid container justifyContent='flex-end'>
+              <Grid item>
+                <Typography
+                  variant='body2'
+                  onClick={() => {
+                    navigate("/register");
+                  }}
+                >
+                  Already have an account? Sign in
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
+          </div>
+        </Box>
       </Box>
     </React.Fragment>
   );

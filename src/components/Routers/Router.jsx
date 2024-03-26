@@ -11,7 +11,9 @@ import OtpConfirmation from "../Pages/OtpConfirmation";
 import ContactUs from "../Pages/ContactUs.jsx";
 import About from "../Pages/About.jsx";
 import Classes from "../Pages/Classes.jsx";
-import { getToken } from "../../utils/token.js";
+// import { getToken } from "../../utils/token.js";
+import AddProduct from "../../AdminComponents/AddProduct.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx"; // Adjust the import path as necessary
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -29,6 +31,7 @@ const MainRouter = () => (
       {/* <Route path='/' element={<Home />} /> */}
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/addProduct' element={<AddProduct />} />
       <Route
         path='/'
         element={
@@ -61,7 +64,10 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
-
+      <Route element={<ProtectedRoute />}>
+        {/* Now AddProduct is a child route of ProtectedRoute */}
+        <Route path='/addProduct' element={<AddProduct />} />
+      </Route>
       <Route path='/forgot-password' element={<ForgotPassword />} />
       <Route path='/otp-confirmation' element={<OtpConfirmation />} />
       <Route

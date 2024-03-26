@@ -42,7 +42,7 @@ function Header() {
 
           <Typography
             sx={{
-              fontFamily: "Inter",
+              fontFamily: "poppins",
               fontSize: "22px",
               fontWeight: 800,
               letterSpacing: "0em",

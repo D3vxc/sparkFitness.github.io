@@ -19,7 +19,7 @@ function Home() {
     refetch: refetchUsers,
   } = useFetchAllUsers();
 
-  // console.log("getAllUsers", getAllUsers);
+  console.log("getAllUsers", getAllUsers);
 
   const isVerified = getAllUsers?.isVerified;
 
@@ -50,13 +50,13 @@ function Home() {
     fetchData();
   }, [isVerified, navigate, getAllUsers]);
 
-  function truncateWithEllipsis(text, maxLength) {
-    // If the text is shorter than the maxLength, return it as is.
-    // If it's longer, truncate it and add '...'.
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
-  }
+  // function truncateWithEllipsis(text, maxLength) {
+  //   // If the text is shorter than the maxLength, return it as is.
+  //   // If it's longer, truncate it and add '...'.
+  //   return text.length > maxLength
+  //     ? text.substring(0, maxLength) + "..."
+  //     : text;
+  // }
 
   return (
     <React.Fragment>
