@@ -1,71 +1,85 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom"; // Import useHistory from React Router
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { useFetchAllUsers } from "../Hooks/GetAllUsers";
-import { useNavigate } from "react-router-dom";
+import { Button, TextField, Typography, Container, Box } from "@mui/material";
 
-function ForgotPassword() {
-  const navigate = useNavigate();
-  const {
-    data: getAllUsers,
-    isLoading: getusersLoading,
-    refetch: refetchUsers,
-  } = useFetchAllUsers();
+function ForgetPassword() {
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [otpError, setOtpError] = useState(false);
 
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [error, setError] = useState("");
-  //   const history = useHistory();
+  const validateInput = () => {
+    setEmailError(!email); // Example validation: email field should not be empty
+    setOtpError(!otp); // Example validation: OTP field should not be empty
+    // You can extend this validation logic as needed
+    return email && otp; // Only proceed if both email and otp have values
+  };
 
-  const handleRequestOTP = () => {
-    const matchingUser = getAllUsers.find(
-      (user) => user.email === enteredEmail
-    );
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const isValid = validateInput();
 
-    if (matchingUser) {
-      // Email matches, navigate to OTP confirmation page
-      //   history.push("/otpconfirmation"); // Replace "/otpconfirmation" with your actual route
-      navigate("/otp-confirmation");
-    } else {
-      setError("Email not found. Please enter a valid email.");
+    if (isValid) {
+      console.log("Email:", email, "OTP:", otp);
+      // You might want to send this data to your server here
+      // Reset error states if needed
+      setEmailError(false);
+      setOtpError(false);
     }
   };
 
   return (
-    <React.Fragment>
+    <Container maxWidth='sm'>
       <Box
         sx={{
-          height: "100%",
+          mt: 8,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
-          gap: "20px",
         }}
       >
-        <Typography>Enter your email below</Typography>
-        <TextField
-          type='email'
-          placeholder='abc@gmail.com'
-          value={enteredEmail}
-          onChange={(e) => setEnteredEmail(e.target.value)}
-        />
-        <Button
-          sx={{
-            background: "#445FD2",
-            color: "#fff",
-            "&:hover": {
-              background: "#445FD2",
-              color: "#fff",
-            },
-          }}
-          onClick={handleRequestOTP} // Add the click handler
-        >
-          Request for OTP
-        </Button>
-        {error && <Typography color='error'>{error}</Typography>}
+        <Typography component='h1' variant='h5'>
+          Forget Password
+        </Typography>
+        <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            error={emailError}
+            helperText={emailError ? "Email is required" : ""}
+            margin='normal'
+            required
+            fullWidth
+            id='email'
+            label='Email Address'
+            name='email'
+            autoComplete='email'
+            autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            error={otpError}
+            helperText={otpError ? "OTP is required" : ""}
+            margin='normal'
+            required
+            fullWidth
+            name='otp'
+            label='OTP'
+            type='text'
+            id='otp'
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Submit
+          </Button>
+        </Box>
       </Box>
-    </React.Fragment>
+    </Container>
   );
 }
 
-export default ForgotPassword;
+export default ForgetPassword;
