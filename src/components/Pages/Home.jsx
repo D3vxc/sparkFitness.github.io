@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MainImage from "../../assets/HomePageImages/Banner.svg";
 import { useFetchAllUsers } from "../Hooks/GetAllUsers";
 import { useFetchAllClasses } from "../Hooks/getAllClasses";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import AboutImageOne from "../../assets/HomePageImages/AboutImageOne.svg";
 import AboutImageTwo from "../../assets/HomePageImages/AboutImageTwo.svg";
 import AboutImageThree from "../../assets/HomePageImages/AboutImageThree.svg";
@@ -60,7 +60,7 @@ function Home() {
 
   return (
     <React.Fragment>
-      <Box sx={{ background: "#FBFFFE" }}>
+      <Box sx={{ background: "#FBFFFE", overflow: "hidden" }}>
         <Box
           sx={{
             backgroundImage: `url(${MainImage})`,
@@ -176,7 +176,7 @@ function Home() {
               <Typography
                 sx={{
                   position: "absolute",
-                  right: "-17%",
+                  right: "-25%",
                   fontFamily: "poppins",
                   fontSize: "230px",
                   fontWeight: 800,
@@ -187,7 +187,6 @@ function Home() {
        1px -1px 0 #E3E3E3,
       -1px  1px 0 #E3E3E3,
        1px  1px 0 #E3E3E3`,
-                  overflow: "hidden", // Hide the overflowed text
                 }}
               >
                 CLASSES
@@ -354,11 +353,10 @@ function Home() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            justifyContent: "center",
             alignItems: "center",
-            height: "300px",
-            position: "relative",
+            height: "auto",
             width: "80%",
             mx: "auto",
           }}
@@ -366,228 +364,249 @@ function Home() {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              flexDirection: "column",
-            }}
-          >
-            <Typography
-              sx={{
-                fontFamilu: "poppins",
-                color: "#524FF5",
-                fontSize: "16px",
-                fontWeight: 600,
-                letterSpacing: "5px",
-                textTransform: "uppercase",
-              }}
-            >
-              About
-            </Typography>
-            <Typography
-              sx={{
-                fontFamilu: "poppins",
-                color: "#000",
-                fontSize: "35px",
-                fontWeight: 700,
-                lineHeight: "40px",
-              }}
-            >
-              Respect your body, <br /> it's the only one you get
-            </Typography>
-            <Typography
-              sx={{
-                fontFamilu: "poppins",
-                color: "#6A6A6A",
-                fontSize: "16px",
-                fontWeight: 500,
-                width: "40%",
-                lineHeight: "20px",
-                mt: "20px",
-              }}
-            >
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. point
-              of using Lorem Ipsum is
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
+              flexDirection: "row",
+              justifyContent: "space-between",
               alignItems: "center",
+              height: "300px",
+              position: "relative",
+              width: "100%",
             }}
           >
-            <Typography
+            <Box
               sx={{
-                position: "absolute",
-                right: "-5%",
-                fontFamily: "poppins",
-                fontSize: "230px",
-                fontWeight: 800,
-                color: "#FBFFFE",
-                background: "transparent",
-                textShadow: `
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "flex-start",
+                flexDirection: "column",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamilu: "poppins",
+                  color: "#524FF5",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  letterSpacing: "5px",
+                  textTransform: "uppercase",
+                }}
+              >
+                About
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamilu: "poppins",
+                  color: "#000",
+                  fontSize: "35px",
+                  fontWeight: 700,
+                  lineHeight: "40px",
+                }}
+              >
+                Respect your body, <br /> it's the only one you get
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamilu: "poppins",
+                  color: "#6A6A6A",
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  width: "40%",
+                  lineHeight: "20px",
+                  mt: "20px",
+                }}
+              >
+                It is a long established fact that a reader will be distracted
+                by the readable content of a page when looking at its layout.
+                point of using Lorem Ipsum is
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  position: "absolute",
+                  right: "-5%",
+                  fontFamily: "poppins",
+                  fontSize: "230px",
+                  fontWeight: 800,
+                  color: "#FBFFFE",
+                  background: "transparent",
+                  textShadow: `
       -1px -1px 0 #E3E3E3,  
        1px -1px 0 #E3E3E3,
       -1px  1px 0 #E3E3E3,
        1px  1px 0 #E3E3E3`,
-              }}
-            >
-              About
-            </Typography>
+                }}
+              >
+                About
+              </Typography>
+            </Box>
           </Box>
-        </Box>
 
-        <Box
-          sx={{
-            width: "80%",
-            mx: "auto",
-            display: "flex",
-            pb: "50px",
-          }}
-        >
-          <Box
+          <Grid
+            container
             sx={{
-              width: "100%",
-              // mx: "auto",
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
+              pb: "100px",
             }}
           >
-            <Box
+            <Grid
+              item
+              xl={6}
+              lg={6}
+              md={6}
+              sm={6}
+              xs={6}
               sx={{
-                background: "#F3F3F3",
-                width: "450px",
                 display: "flex",
-                padding: "20px",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: "20px",
+                // padding: "20px",
               }}
             >
+              {" "}
               <Box
                 sx={{
+                  background: "#F3F3F3",
+                  width: "90%",
                   display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  flexDirection: "column",
-                  width: "80%",
                   padding: "20px",
                 }}
               >
-                <Typography
+                <Box
                   sx={{
-                    fontFamilu: "poppins",
-                    color: "#000",
-                    fontSize: "26px",
-                    fontWeight: 700,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    flexDirection: "column",
+                    width: "100%",
+                    padding: "20px",
                   }}
                 >
-                  Motivation
-                </Typography>
-                <Typography
+                  <Typography
+                    sx={{
+                      fontFamilu: "poppins",
+                      color: "#000",
+                      fontSize: "26px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Motivation
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamilu: "poppins",
+                      color: "#6A6A6A",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      width: "auto",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    It is a long established fact that a reader will be
+                    distracted
+                  </Typography>
+                </Box>
+                <Box
+                  component='img'
+                  src={AboutImageOne}
                   sx={{
-                    fontFamilu: "poppins",
-                    color: "#6A6A6A",
-                    fontSize: "16px",
-                    fontWeight: 500,
+                    height: "130px",
                     width: "auto",
-                    lineHeight: "20px",
                   }}
-                >
-                  It is a long established fact that a reader will be distracted
-                </Typography>
+                />
               </Box>
               <Box
-                component='img'
-                src={AboutImageOne}
                 sx={{
-                  height: "130px",
-                  width: "auto",
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                background: "#F3F3F3",
-                width: "450px",
-                display: "flex",
-                padding: "20px",
-              }}
-            >
-              <Box
-                component='img'
-                src={AboutImageTwo}
-                sx={{
-                  height: "130px",
-                  width: "auto",
-                }}
-              />
-              <Box
-                sx={{
+                  background: "#F3F3F3",
+                  width: "90%",
                   display: "flex",
-                  justifyContent: "center",
-                  alignItems: "flex-start",
-                  flexDirection: "column",
-                  width: "80%",
                   padding: "20px",
                 }}
               >
-                <Typography
+                <Box
+                  component='img'
+                  src={AboutImageTwo}
                   sx={{
-                    fontFamilu: "poppins",
-                    color: "#000",
-                    fontSize: "26px",
-                    fontWeight: 700,
-                  }}
-                >
-                  Inspire
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamilu: "poppins",
-                    color: "#6A6A6A",
-                    fontSize: "16px",
-                    fontWeight: 500,
+                    height: "130px",
                     width: "auto",
-                    lineHeight: "20px",
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    flexDirection: "column",
+                    width: "80%",
+                    padding: "20px",
                   }}
                 >
-                  It is a long established fact that a reader will be distracted
-                </Typography>
+                  <Typography
+                    sx={{
+                      fontFamilu: "poppins",
+                      color: "#000",
+                      fontSize: "26px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Inspire
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamilu: "poppins",
+                      color: "#6A6A6A",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      width: "auto",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    It is a long established fact that a reader will be
+                    distracted
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-            }}
-          >
-            <Box
-              component='img'
-              src={BackgroundPattern}
-              sx={{
-                position: "absolute",
-                right: "100px",
-                bottom: "0",
-                height: "500px",
-                width: "auto",
-              }}
-            />
-            <Box
-              component='img'
-              src={AboutImageThree}
-              sx={{
-                position: "absolute",
-                right: "185px",
-                height: "465px",
-                top: "0",
-              }}
-            />
-          </Box>
+            </Grid>
+            <Grid item xl={6} lg={6} md={6} sm={6} xs={6}>
+              {" "}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "relative",
+                }}
+              >
+                <Box
+                  component='img'
+                  src={BackgroundPattern}
+                  sx={{
+                    position: "absolute",
+                    height: "500px",
+                    width: "auto",
+                    top: "-130px",
+                  }}
+                />
+                <Box
+                  component='img'
+                  src={AboutImageThree}
+                  sx={{
+                    position: "absolute",
+                    height: "465px",
+                    top: "0",
+                  }}
+                />
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
         <Box>ewofhiewo</Box>
       </Box>
