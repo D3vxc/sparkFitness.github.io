@@ -3,31 +3,38 @@ import React from "react";
 
 const MainBanner = (props) => {
   return (
-    <>
-      <Box
+    <Box
+      sx={{
+        height: "80vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage: `url(${props.image})`, // Set the background image using props
+        backgroundSize: "cover", // Ensure the image covers the entire container
+        backgroundPosition: "center", // Center the background image
+      }}
+    >
+      {/* Typography for the main text */}
+      <Typography
         sx={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0')",
-          height: "80vh",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          fontFamily: "Inter",
+          fontSize: "70px",
+          fontWeight: 800,
+          letterSpacing: "0em",
+          textAlign: "center",
+          color: "#FFFFFF", // Text color
+          width: `${props.width}`,
+          position: "relative",
+          textShadow:
+            "-7px 7px 0 rgba(23, 29, 36, 1), -7.1px 7.1px 0 rgba(255, 255, 255, 1)",
+          lineHeight: "95px",
+          pb: `${props.paddingbottom}`,
         }}
       >
-        <Typography
-          sx={{
-            color: "white",
-            fontSize: "3rem",
-            fontWeight: "bold",
-            fontFamily: "poppins",
-            textAlign: "center",
-          }}
-        >
-          {props.mainText}
-        </Typography>
-      </Box>
-    </>
+        {props.mainText}
+      </Typography>
+    </Box>
   );
 };
 

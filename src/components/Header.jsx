@@ -6,6 +6,7 @@ import { hover } from "@testing-library/user-event/dist/hover";
 
 function Header() {
   const navigate = useNavigate();
+
   return (
     <React.Fragment>
       <Grid
@@ -83,7 +84,16 @@ function Header() {
           {" "}
           <Typography sx={TextStyle}>About</Typography>
         </Grid>
-        <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
+        <Grid
+          item
+          xs={1}
+          sm={1}
+          md={1}
+          lg={1}
+          xl={1}
+          sx={{ ...NavbarBtn }}
+          onClick={() => navigate("/products")}
+        >
           {" "}
           <Typography sx={TextStyle}> Products</Typography>
         </Grid>
@@ -156,6 +166,7 @@ const TextStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  textTransform: window.location.pathname === "/about" ? "underline" : "none",
   "&:hover": {
     fontSize: "20px",
     transition: "0.5s",

@@ -11,6 +11,7 @@ import OtpConfirmation from "../Pages/OtpConfirmation";
 import ContactUs from "../Pages/ContactUs.jsx";
 import About from "../Pages/About.jsx";
 import Classes from "../Pages/Classes.jsx";
+import Products from "../Pages/Products.jsx";
 // import { getToken } from "../../utils/token.js";
 import AddProduct from "../../AdminComponents/AddProduct.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx"; // Adjust the import path as necessary
@@ -61,6 +62,14 @@ const MainRouter = () => (
         element={
           <HeaderFooterLayout>
             <Classes />
+          </HeaderFooterLayout>
+        }
+      />
+      <Route
+        path='/products'
+        element={
+          <HeaderFooterLayout>
+            <Products />
           </HeaderFooterLayout>
         }
       />
