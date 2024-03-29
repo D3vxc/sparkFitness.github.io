@@ -249,6 +249,11 @@
 
 // export default Register;
 import * as React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -260,51 +265,65 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import logo from "../../assets/HomePageImages/Logo.svg";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  // State variables for input validation
-  const [firstNameError, setFirstNameError] = React.useState(false);
-  const [lastNameError, setLastNameError] = React.useState(false);
-  const [emailError, setEmailError] = React.useState(false);
-  const [passwordError, setPasswordError] = React.useState(false);
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const data = new FormData(event.currentTarget);
 
-    // Reset errors
-    setFirstNameError(!data.get("firstName"));
-    setLastNameError(!data.get("lastName"));
-    setEmailError(!data.get("email"));
-    setPasswordError(!data.get("password"));
+    const firstName = data.get("firstName");
+    const lastName = data.get("lastName");
+    const email = data.get("email");
+    const password = data.get("password");
 
-    // If validation passes (for demonstration purposes)
-    if (
-      data.get("firstName") &&
-      data.get("lastName") &&
-      data.get("email") &&
-      data.get("password")
-    ) {
-      console.log({
-        firstName: data.get("firstName"),
-        lastName: data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-      });
-      // Navigate or handle the sign-up process here
+    // Basic validation
+    setFirstNameError(!firstName);
+    setLastNameError(!lastName);
+    setEmailError(!email);
+    setPasswordError(!password);
+
+    if (firstName && lastName && email && password) {
+      try {
+        // Adjust URL to your API endpoint for registration
+        const response = await axios.post("/user/register", {
+          firstName,
+          lastName,
+          email,
+          password,
+        });
+
+        // Show success message and navigate or take other actions
+        toast.success("Registration successful!");
+        setIsLoading(false);
+
+        // Navigate to login page or dashboard as per your flow
+        navigate("/login");
+      } catch (error) {
+        // Handle errors (e.g., email already in use)
+        toast.error("Registration failed. Please try again.");
+        setIsLoading(false);
+      }
+    } else {
+      setIsLoading(false);
     }
   };
-
   return (
     <ThemeProvider theme={createTheme()}>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
+        <ToastContainer />
         <Box
           sx={{
             marginTop: 8,
@@ -313,32 +332,12 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              component='img'
-              src={logo}
-              sx={{ height: "50px", width: "50px" }}
-            />
-            <Typography
-              sx={{
-                fontFamily: "poppins",
-                fontSize: "22px",
-                fontWeight: 800,
-                letterSpacing: "0em",
-                textAlign: "left",
-                cursor: "pointer",
-              }}
-            >
-              Spark Fitness
-            </Typography>
-          </Box>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Sign Up
+          </Typography>
           <Box
             component='form'
             noValidate
@@ -396,21 +395,16 @@ export default function SignUp() {
                   helperText={passwordError ? "Password is required" : ""}
                 />
               </Grid>
-              {/* Example of a grid item for additional inputs or information */}
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
+              {/* Optional: Additional form fields or information */}
             </Grid>
             <Button
               type='submit'
               fullWidth
               variant='contained'
               sx={{ mt: 3, mb: 2 }}
+              disabled={isLoading}
             >
-              Sign Up
+              {isLoading ? "Registering..." : "Sign Up"}
             </Button>
             <Grid container justifyContent='flex-end'>
               <Grid item>
