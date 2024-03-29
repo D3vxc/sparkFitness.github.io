@@ -18,6 +18,7 @@ const About = () => {
           mainText={"Start with us the body and mind clensing"}
           image={Banner}
           width={"950px"}
+          imageHeight={"80vh"}
           paddingbottom={"100px"} // only giving it to this page due there will be images on the background
         />
         <Box

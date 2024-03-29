@@ -5,8 +5,9 @@ const MainBanner = (props) => {
   return (
     <Box
       sx={{
-        height: "80vh",
-        width: "100vw",
+        // height: "55vh",
+        height: `${props.imageHeight}`,
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
