@@ -7,8 +7,11 @@ import DashboardComponent from "./DashboardComponent.jsx";
 import UsersComponent from "./UsersComponent.jsx";
 import ProductsComponent from "./ProductsComponent.jsx";
 import ClassesComponent from "./ClassesComponent.jsx";
+// import { Routes, Route, Link } from 'react-router-dom';
+// import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
+  //  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState("Dashboard"); // Default view
 
   // Function to change view based on clicked item
@@ -21,6 +24,7 @@ function AdminDashboard() {
       <Box
         sx={{
           display: "flex",
+          bgcolor: "blue",
           justifyContent: "flex-start",
           alignItems: "center",
           padding: "10px",
@@ -55,13 +59,16 @@ function AdminDashboard() {
           xs={12}
           sx={
             {
+              bgcolor: "green",
+              padding: "50px",
+
               /* Your styles here */
             }
           }
         >
           {/* Navigation */}
           <Box>
-            <Typography onClick={() => changeView("Dashboard")} sx={NavText}>
+            <Typography onClick={() => changeView("Dashboard") /*navigate("/admin/Dashboard")*/} sx={NavText}>
               Dashboard
             </Typography>
             <Typography onClick={() => changeView("Users")} sx={NavText}>
@@ -118,3 +125,6 @@ const NavText = {
     color: "#000",
   },
 };
+
+
+

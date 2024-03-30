@@ -16,6 +16,10 @@ import Products from "../Pages/Products.jsx";
 import AddProduct from "../../AdminComponents/AddProduct.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx"; // Adjust the import path as necessary
 import AdminDashboard from "../../AdminComponents/AdminDashboard.jsx";
+import UsersComponent from "../../AdminComponents/UsersComponent.jsx";
+import ProductsComponent from "../../AdminComponents/ProductsComponent.jsx";
+import ClassesComponent from "../../AdminComponents/ClassesComponent.jsx";
+import Dashboard from "../../AdminComponents/DashboardComponent.jsx";
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -33,7 +37,13 @@ const MainRouter = () => (
       {/* <Route path='/' element={<Home />} /> */}
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
+
       <Route path='/admin' element={<AdminDashboard />} />
+      <Route path='/admin/dashboard' element={<Dashboard />} />
+      <Route path="/admin/users" element={<UsersComponent />} />
+      <Route path="/admin/products" element={<ProductsComponent />} />
+      <Route path="/admin/classes" element={<ClassesComponent />} />
+      
       <Route path='/addProduct' element={<AddProduct />} />
       <Route
         path='/'
