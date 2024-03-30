@@ -1,78 +1,66 @@
-import React, { useState } from "react";
+import { React, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import axios from "axios";
 import { Box, TextField, Button, Typography, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+const productSchema = z.object({
+  name: z.string().min(1, "Product name is required."),
+  price: z.number().min(0, "Price must be a positive number."),
+  stock: z.number().min(0, "Stock must be a positive number."),
+  description: z.string().min(1, "Product description is required."),
+  imageFile: z.any(), // For file inputs, validation can be customized
+});
 
 function AddProduct() {
-  const [formData, setFormData] = useState({
-    name: "",
-    price: "",
-    stock: "",
-    description: "",
-    image: "", // This will store the base64 encoded image
+  const inputRef = useRef();
+  const [image, setImage] = useState(null);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(productSchema),
   });
 
-  const [error, setError] = useState({
-    name: false,
-    price: false,
-    stock: false,
-    description: false,
-    image: false,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    setError((prevState) => ({ ...prevState, [name]: false }));
+  const handleDragOver = (event) => {
+    event.preventDefault();
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData((prevState) => ({
-          ...prevState,
-          image: reader.result, // Stores the image as base64
-        }));
-      };
-      reader.readAsDataURL(file);
-      setError((prevState) => ({ ...prevState, image: false }));
-    }
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setImage(event.dataTransfer.files);
   };
 
-  const validateForm = () => {
-    const newError = {
-      name: !formData.name.trim(),
-      price: !formData.price.trim(),
-      stock: !formData.stock.trim(),
-      description: !formData.description.trim(),
-      image: formData.image === "", // Checks if the image string is empty
-    };
-    setError(newError);
-    return Object.values(newError).every((v) => !v);
-  };
+  const imageFile = watch("imageFile");
+  const onSubmit = async (data) => {
+    console.log("Data here===>", data);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("price", data.price.toString());
+    formData.append("stock", data.stock.toString());
+    formData.append("description", data.description);
+    formData.append("image", data?.imageFile[0]);
+    if (data?.imageFile[0]) formData.append("image", data?.imageFile[0]);
 
-  const addProduct = () => {
-    if (validateForm()) {
-      console.log(formData); // Simulate sending data to backend
-      // Reset the form and error state after successful validation/submission
-      setFormData({
-        name: "",
-        price: "",
-        stock: "",
-        description: "",
-        image: "",
+    try {
+      const response = await axios.post("/products/newproducts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      setError({
-        name: false,
-        price: false,
-        stock: false,
-        description: false,
-        image: false,
-      });
-      // Optionally, show a success message or navigate to another view
+      console.log(response.data);
+      reset(); // Reset form fields after successful submission
+      // Handle successful response (e.g., display a success message or redirect)
+    } catch (error) {
+      console.error(error);
+      // Handle error (e.g., display an error message)
     }
   };
 
@@ -90,6 +78,7 @@ function AddProduct() {
       </Typography>
       <Box
         component='form'
+        onSubmit={handleSubmit(onSubmit)}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -107,89 +96,140 @@ function AddProduct() {
         <TextField
           label='Product Name'
           variant='outlined'
-          name='name'
-          value={formData.name}
-          onChange={handleChange}
-          required
-          error={error.name}
-          helperText={error.name ? "Product name is required." : ""}
+          error={Boolean(errors.name)}
+          helperText={errors.name?.message}
+          {...register("name")}
         />
         <TextField
           label='Price'
           variant='outlined'
-          name='price'
           type='number'
-          value={formData.price}
-          onChange={handleChange}
-          required
-          error={error.price}
-          helperText={error.price ? "Price is required." : ""}
+          error={Boolean(errors.price)}
+          helperText={errors.price?.message}
+          {...register("price", { valueAsNumber: true })}
         />
         <TextField
           label='Stock'
           variant='outlined'
-          name='stock'
           type='number'
-          value={formData.stock}
-          onChange={handleChange}
-          required
-          error={error.stock}
-          helperText={error.stock ? "Stock is required." : ""}
+          error={Boolean(errors.stock)}
+          helperText={errors.stock?.message}
+          {...register("stock", { valueAsNumber: true })}
         />
         <TextField
           label='Product Description'
           variant='outlined'
-          name='description'
           multiline
           rows={4}
-          value={formData.description}
-          onChange={handleChange}
-          required
-          error={error.description}
-          helperText={
-            error.description ? "Product description is required." : ""
-          }
+          error={Boolean(errors.description)}
+          helperText={errors.description?.message}
+          {...register("description")}
         />
-        <TextField
-          label='Image URL (optional)'
-          variant='outlined'
-          name='imageUrl'
-          value={formData.imageUrl}
-          onChange={(e) => {
-            handleChange(e);
-            // Directly setting the image as the URL entered by the user
-            setFormData((prevState) => ({
-              ...prevState,
-              image: e.target.value,
-            }));
-          }}
-          helperText='Use if no file image is being uploaded.'
-        />
-        <Button
-          variant='contained'
-          component='label'
+        <Box
           sx={{
-            mt: 2,
-            mb: 2,
-            backgroundColor: "primary.main",
-            "&:hover": { backgroundColor: "primary.dark" },
+            border: "2px dashed #445FD2",
+            background: "#fff",
+            width: "30%",
+            maxWidth: "270px",
+            p: "4%",
+            mx: "auto",
+            position: "relative",
           }}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
         >
-          Upload Image
+          <Box
+            sx={{
+              display: "grid",
+              width: "60%",
+              mx: " auto",
+            }}
+          >
+            <Box
+              sx={{
+                display: "grid",
+                justifyContent: "center",
+                alignItems: "center",
+                tetxAlign: "center",
+              }}
+            >
+              <Box
+                component='img'
+                // src={UploadtoCloud}
+                sx={{
+                  position: "absolute",
+                  left: "5%",
+                  textalign: "center",
+                }}
+              />
+              <Typography
+                onClick={() => inputRef.current.click()}
+                sx={{
+                  fontFamily: "Poppins",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "10px",
+                  color: "#6B7A99",
+                  cursor: "pointer",
+                  "&:hover": {
+                    color: "blue",
+                  },
+                  textalign: "center",
+                }}
+              >
+                Drag & Drop upload or browse to choose a file
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Mulish",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  fontSize: "8px",
+                  color: "#676767",
+                  textAlign: "center",
+                }}
+              >
+                Supported format : JPEG, PNG, GIF, MP4, PDF
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ textAlign: "center", mt: "1%" }}>
+            <Typography
+              sx={{
+                fontFamily: "Poppins",
+                fontStyle: "normal",
+                fontWeight: 400,
+                fontSize: {
+                  xl: "10px",
+                  lg: "10px",
+                  md: "10px",
+                  sm: "8px",
+                  xs: "8px",
+                },
+                color: "#445FD2",
+              }}
+            >
+              Mandatory Photos : Front View, Back View, Close Fabric View, Model
+              Wearing View , Size Chart & Privacy Policy
+            </Typography>
+          </Box>
           <input
             type='file'
+            multiple
+            onChange={(event) => setImage(event.target.files)}
             hidden
-            accept='image/*'
-            onChange={handleImageChange}
+            accept='.png,.pdf,.mp4,.jpeg,.gif'
+            ref={inputRef}
           />
-        </Button>
-        {error.image && (
+        </Box>
+
+        {errors.image && (
           <Typography color='error' sx={{ mt: 2, width: "100%" }}>
-            Please upload an image or provide an image URL.
+            {errors.image.message}
           </Typography>
         )}
         <Button
-          onClick={addProduct}
+          type='submit'
           variant='contained'
           color='success'
           sx={{ mt: 2 }}
