@@ -12,9 +12,9 @@ import ContactUs from "../Pages/ContactUs.jsx";
 import About from "../Pages/About.jsx";
 import Classes from "../Pages/Classes.jsx";
 import Products from "../Pages/Products.jsx";
-// import { getToken } from "../../utils/token.js";
 import AddProduct from "../../AdminComponents/AddProduct.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx"; // Adjust the import path as necessary
+import ProtectedRoute from "./ProtectedRoute.jsx"; // Ensure this component is implemented correctly for authentication
+import AdminDashboard from "../../AdminComponents/AdminDashboard.jsx";
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -24,15 +24,18 @@ const HeaderFooterLayout = ({ children }) => (
   </div>
 );
 
-const NoHeaderFooterLayout = ({ children }) => <main>{children}</main>;
+const AdminLayout = () => {
+  return (
+    <div>
+      <AdminDashboard />
+      {/* <Outlet /> This renders the nested route */}
+    </div>
+  );
+};
 
 const MainRouter = () => (
   <Router>
     <Routes>
-      {/* <Route path='/' element={<Home />} /> */}
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/addProduct' element={<AddProduct />} />
       <Route
         path='/'
         element={
@@ -41,6 +44,10 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
+      <Route path='/register' element={<Register />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/forgot-password' element={<ForgotPassword />} />
+      <Route path='/otp-confirmation' element={<OtpConfirmation />} />
       <Route
         path='/about'
         element={
@@ -73,20 +80,16 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
+
+      {/* Protected routes for admin */}
       <Route element={<ProtectedRoute />}>
-        {/* Now AddProduct is a child route of ProtectedRoute */}
-        <Route path='/addProduct' element={<AddProduct />} />
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />{" "}
+          {/* Admin Dashboard as the default child */}
+          <Route path='addProduct' element={<AddProduct />} />
+          {/* More admin routes can be nested here */}
+        </Route>
       </Route>
-      <Route path='/forgot-password' element={<ForgotPassword />} />
-      <Route path='/otp-confirmation' element={<OtpConfirmation />} />
-      <Route
-        path='/contact'
-        element={
-          <HeaderFooterLayout>
-            <ContactUs />
-          </HeaderFooterLayout>
-        }
-      />
     </Routes>
   </Router>
 );

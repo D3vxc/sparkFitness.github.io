@@ -15,7 +15,7 @@ function AddProduct() {
     price: false,
     stock: false,
     description: false,
-    image: false, // Handling image errors through helperText might need a different approach
+    image: false,
   });
 
   const handleChange = (e) => {
@@ -24,24 +24,21 @@ function AddProduct() {
       ...prevState,
       [name]: value,
     }));
-    // Resetting error state if the field is not empty
-    if (value.trim() !== "") {
-      setError((prevState) => ({ ...prevState, [name]: false }));
-    }
+    setError((prevState) => ({ ...prevState, [name]: false }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setError((prevState) => ({ ...prevState, image: false }));
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData((prevState) => ({
           ...prevState,
-          image: reader.result,
+          image: reader.result, // Stores the image as base64
         }));
       };
       reader.readAsDataURL(file);
+      setError((prevState) => ({ ...prevState, image: false }));
     }
   };
 
@@ -51,24 +48,31 @@ function AddProduct() {
       price: !formData.price.trim(),
       stock: !formData.stock.trim(),
       description: !formData.description.trim(),
-      image: !formData.image.trim(),
+      image: formData.image === "", // Checks if the image string is empty
     };
     setError(newError);
-    // Form is valid if no values in newError are true
     return Object.values(newError).every((v) => !v);
   };
 
   const addProduct = () => {
     if (validateForm()) {
-      console.log(formData); // For demonstration purposes
-      // Here you would usually send the data to the backend
+      console.log(formData); // Simulate sending data to backend
+      // Reset the form and error state after successful validation/submission
       setFormData({
         name: "",
         price: "",
         stock: "",
         description: "",
         image: "",
-      }); // Reset form
+      });
+      setError({
+        name: false,
+        price: false,
+        stock: false,
+        description: false,
+        image: false,
+      });
+      // Optionally, show a success message or navigate to another view
     }
   };
 
@@ -146,6 +150,21 @@ function AddProduct() {
             error.description ? "Product description is required." : ""
           }
         />
+        <TextField
+          label='Image URL (optional)'
+          variant='outlined'
+          name='imageUrl'
+          value={formData.imageUrl}
+          onChange={(e) => {
+            handleChange(e);
+            // Directly setting the image as the URL entered by the user
+            setFormData((prevState) => ({
+              ...prevState,
+              image: e.target.value,
+            }));
+          }}
+          helperText='Use if no file image is being uploaded.'
+        />
         <Button
           variant='contained'
           component='label'
@@ -164,10 +183,9 @@ function AddProduct() {
             onChange={handleImageChange}
           />
         </Button>
-        {/* Image error displayed as helper text instead of an alert */}
         {error.image && (
           <Typography color='error' sx={{ mt: 2, width: "100%" }}>
-            Please upload an image.
+            Please upload an image or provide an image URL.
           </Typography>
         )}
         <Button
