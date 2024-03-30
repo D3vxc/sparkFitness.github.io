@@ -12,8 +12,9 @@ import ContactUs from "../Pages/ContactUs.jsx";
 import About from "../Pages/About.jsx";
 import Classes from "../Pages/Classes.jsx";
 import Products from "../Pages/Products.jsx";
+// import { getToken } from "../../utils/token.js";
 import AddProduct from "../../AdminComponents/AddProduct.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx"; // Ensure this component is implemented correctly for authentication
+import ProtectedRoute from "./ProtectedRoute.jsx"; // Adjust the import path as necessary
 import AdminDashboard from "../../AdminComponents/AdminDashboard.jsx";
 
 const HeaderFooterLayout = ({ children }) => (
@@ -24,9 +25,16 @@ const HeaderFooterLayout = ({ children }) => (
   </div>
 );
 
+const NoHeaderFooterLayout = ({ children }) => <main>{children}</main>;
+
 const MainRouter = () => (
   <Router>
     <Routes>
+      {/* <Route path='/' element={<Home />} /> */}
+      <Route path='/register' element={<Register />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/admin' element={<AdminDashboard />} />
+      <Route path='/addProduct' element={<AddProduct />} />
       <Route
         path='/'
         element={
@@ -35,10 +43,6 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/forgot-password' element={<ForgotPassword />} />
-      <Route path='/otp-confirmation' element={<OtpConfirmation />} />
       <Route
         path='/about'
         element={
@@ -68,6 +72,19 @@ const MainRouter = () => (
         element={
           <HeaderFooterLayout>
             <Products />
+          </HeaderFooterLayout>
+        }
+      />
+      {/* <Route element={<ProtectedRoute />}> */}
+      {/* Now AddProduct is a child route of ProtectedRoute */}
+      {/* </Route> */}
+      <Route path='/forgot-password' element={<ForgotPassword />} />
+      <Route path='/otp-confirmation' element={<OtpConfirmation />} />
+      <Route
+        path='/contact'
+        element={
+          <HeaderFooterLayout>
+            <ContactUs />
           </HeaderFooterLayout>
         }
       />
