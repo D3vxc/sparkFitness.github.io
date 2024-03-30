@@ -24,15 +24,6 @@ const HeaderFooterLayout = ({ children }) => (
   </div>
 );
 
-const AdminLayout = () => {
-  return (
-    <div>
-      <AdminDashboard />
-      {/* <Outlet /> This renders the nested route */}
-    </div>
-  );
-};
-
 const MainRouter = () => (
   <Router>
     <Routes>
@@ -80,16 +71,6 @@ const MainRouter = () => (
           </HeaderFooterLayout>
         }
       />
-
-      {/* Protected routes for admin */}
-      <Route element={<ProtectedRoute />}>
-        <Route path='/admin' element={<AdminLayout />}>
-          <Route index element={<AdminDashboard />} />{" "}
-          {/* Admin Dashboard as the default child */}
-          <Route path='addProduct' element={<AddProduct />} />
-          {/* More admin routes can be nested here */}
-        </Route>
-      </Route>
     </Routes>
   </Router>
 );

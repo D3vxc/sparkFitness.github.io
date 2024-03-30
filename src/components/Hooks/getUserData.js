@@ -8,7 +8,8 @@ export const useFetchCurrentUser = () => {
     async () => {
       const token = getToken(); // Get the current user's token
       if (!token) {
-        return (window.location.href = "/login"); // Redirect to login if token is not available
+        // return
+        // (window.location.href = "/login"); // Redirect to login if token is not available
       }
 
       try {
