@@ -38,6 +38,7 @@ function AddProduct() {
     setImage(event.dataTransfer.files);
   };
 
+<<<<<<< HEAD
   const imageFile = watch("imageFile");
   const onSubmit = async (data) => {
     console.log("Data here===>", data);
@@ -58,6 +59,48 @@ function AddProduct() {
       console.log(response.data);
         reset(); // Reset form fields after successful submission
       // Handle successful response (e.g., display a success message or redirect)
+=======
+  // const imageFile = watch("imageFile");
+
+  const onSubmit = async (formDataValues) => {
+    console.log("Form data received:", formDataValues);
+    let imageUrl = ""; // Placeholder for the uploaded image URL
+
+    // Check if there's an image to upload first
+    if (image && image.length > 0) {
+      const imageFormData = new FormData();
+      imageFormData.append("file", image[0]); // Assuming `image` state holds FileList
+      imageFormData.append("upload_preset", "spark_fitness");
+      imageFormData.append("cloud_name", "spark-cloud");
+
+      // Attempt to upload the image
+      try {
+        const uploadResponse = await fetch(
+          "https://api.cloudinary.com/v1_1/spark-cloud/image/upload",
+          {
+            method: "post",
+            body: imageFormData,
+          }
+        );
+        const imageData = await uploadResponse.json();
+        imageUrl = imageData.url; // Assuming the response contains the URL of the uploaded image
+        console.log("Image uploaded successfully:", imageUrl);
+      } catch (error) {
+        console.error("Image upload error:", error);
+        return; // Abort product submission if image upload fails
+      }
+    }
+
+    // Submit product data to the server
+    try {
+      const response = await axios.post("/products/newproducts", {
+        ...formDataValues,
+        image: imageUrl,
+      });
+
+      console.log("Server response:", response.data);
+      reset(); // Reset form fields after successful submission
+>>>>>>> 2008e7dfcd9104de876ac5d2c1c63d43e799fcab
     } catch (error) {
       console.error(error);
       // Handle error (e.g., display an error message)

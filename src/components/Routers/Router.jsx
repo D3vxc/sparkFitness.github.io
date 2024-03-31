@@ -20,6 +20,7 @@ import UsersComponent from "../../AdminComponents/UsersComponent.jsx";
 import ProductsComponent from "../../AdminComponents/ProductsComponent.jsx";
 import ClassesComponent from "../../AdminComponents/ClassesComponent.jsx";
 import Dashboard from "../../AdminComponents/DashboardComponent.jsx";
+import Cart from "../Pages/Cart.jsx";
 
 const HeaderFooterLayout = ({ children }) => (
   <div>
@@ -40,10 +41,10 @@ const MainRouter = () => (
 
       <Route path='/admin' element={<AdminDashboard />} />
       <Route path='/admin/dashboard' element={<Dashboard />} />
-      <Route path="/admin/users" element={<UsersComponent />} />
-      <Route path="/admin/products" element={<ProductsComponent />} />
-      <Route path="/admin/classes" element={<ClassesComponent />} />
-      
+      <Route path='/admin/users' element={<UsersComponent />} />
+      <Route path='/admin/products' element={<ProductsComponent />} />
+      <Route path='/admin/classes' element={<ClassesComponent />} />
+
       <Route path='/addProduct' element={<AddProduct />} />
       <Route
         path='/'
@@ -82,6 +83,14 @@ const MainRouter = () => (
         element={
           <HeaderFooterLayout>
             <Products />
+          </HeaderFooterLayout>
+        }
+      />
+      <Route
+        path='/cart'
+        element={
+          <HeaderFooterLayout>
+            <Cart />
           </HeaderFooterLayout>
         }
       />

@@ -1,8 +1,17 @@
 import React from "react";
 import MainBanner from "../components/MainBanner";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import { useFetchAllProduct } from "../Hooks/getAllproduct";
 
 function Products() {
+  const {
+    data: getAllProduct,
+    isLoading: getproductLoading,
+    refetch: refetchProduct,
+  } = useFetchAllProduct();
+
+  console.log("getAllProduct", getAllProduct);
+
   return (
     <React.Fragment>
       <Box
@@ -94,7 +103,89 @@ function Products() {
           </Grid>
         </Grid>
 
-        <Grid container></Grid>
+        {/* products are showing from here */}
+        <Box
+          sx={{
+            display: "flex",
+            // pb: "200px",
+            width: "79%",
+            flexWrap: "wrap",
+            mx: "auto",
+          }}
+        >
+          {getAllProduct?.map((x, i) => {
+            return (
+              <Paper
+                key={i}
+                elevation={0}
+                container
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  width: "250px",
+                  height: "550px",
+                  background: "transparent",
+                  margin: "20px",
+                  gap: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                <Box
+                  component='img'
+                  src={x?.image}
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    mx: "auto",
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    width: "100%",
+                    textAlign: "left",
+                    maxHeight: "40px",
+                    overflow: "hidden",
+                    fontFamily: "poppins",
+                    color: "#000",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    lineHeight: "20px",
+                  }}
+                >
+                  {x?.description}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    textAlign: "left",
+                    fontFamily: "poppins",
+                    color: "#000",
+                    minHeight: "50px",
+                    fontSize: "20px",
+                    fontWeight: 500,
+                    lineHeight: "25px",
+                  }}
+                >
+                  {x?.name}
+                </Typography>
+                <Typography
+                  sx={{
+                    width: "100%",
+                    textAlign: "left",
+                    color: "#000",
+                    fontSize: "20px",
+                    fontWeight: 500,
+                    lineHeight: "22px",
+                  }}
+                >
+                  ₹{x?.price}
+                </Typography>
+              </Paper>
+            );
+          })}
+        </Box>
       </Box>
     </React.Fragment>
   );

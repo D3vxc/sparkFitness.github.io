@@ -12,5 +12,6 @@ export const useFetchAllProduct = () => {
     }
   });
 
+
   return { data, error, isLoading, refetch };
 };

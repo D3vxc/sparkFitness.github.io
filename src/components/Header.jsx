@@ -67,9 +67,9 @@ function Header() {
           sx={{
             ...NavbarBtn,
           }}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/products")}
         >
-          <Typography sx={TextStyle}>Home</Typography>
+          <Typography sx={TextStyle}>Products</Typography>
         </Grid>
         <Grid
           item
@@ -92,10 +92,23 @@ function Header() {
           lg={1}
           xl={1}
           sx={{ ...NavbarBtn }}
-          onClick={() => navigate("/products")}
+          onClick={() => navigate("/contactus")}
         >
           {" "}
-          <Typography sx={TextStyle}> Products</Typography>
+          <Typography sx={TextStyle}>Contact</Typography>
+        </Grid>
+        <Grid
+          item
+          xs={1}
+          sm={1}
+          md={1}
+          lg={1}
+          xl={1}
+          sx={{ ...NavbarBtn }}
+          onClick={() => navigate("/cart")}
+        >
+          {" "}
+          <Typography sx={TextStyle}> Cart</Typography>
         </Grid>
         {/* <Grid item xs={1} sm={1} md={1} lg={1} xl={1} sx={{ ...NavbarBtn }}>
           {" "}
@@ -105,19 +118,6 @@ function Header() {
           {" "}
           <Typography sx={TextStyle}>Diet</Typography>
         </Grid> */}
-        <Grid
-          item
-          xs={1}
-          sm={1}
-          md={1}
-          lg={1}
-          xl={1}
-          sx={{ ...NavbarBtn }}
-          onClick={() => navigate("/contactus")}
-        >
-          {" "}
-          <Typography sx={TextStyle}>Contact</Typography>
-        </Grid>
 
         <Grid
           item
