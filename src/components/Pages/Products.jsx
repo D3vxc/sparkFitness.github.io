@@ -123,11 +123,12 @@ function Products() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
-                  width: "250px", // Removed duplicate width property
+                  width: "250px",
                   height: "550px",
                   background: "transparent",
                   margin: "20px",
                   gap: "10px",
+                  cursor: "pointer",
                 }}
               >
                 <Box
