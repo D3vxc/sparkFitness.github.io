@@ -8,15 +8,18 @@ import { useNavigate } from "react-router-dom";
 
 const productSchema = z.object({
   name: z.string().min(1, "Product name is required."),
-  price: z.number().min(0, "Price must be a positive number."),
-  stock: z.number().min(0, "Stock must be a positive number."),
+  price: z.number().min(1, "Price must be a positive number."),
+  stock: z.number().min(1, "Stock must be a positive number."),
   description: z.string().min(1, "Product description is required."),
-  imageFile: z.any(), // For file inputs, validation can be customized
+  image: z.any(), // For file inputs, validation can be customized
 });
 
 function AddProduct() {
   const inputRef = useRef();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+
+  console.log("image here", image);
+
   const navigate = useNavigate();
   const {
     register,
@@ -39,30 +42,125 @@ function AddProduct() {
   };
 
   const imageFile = watch("imageFile");
-  const onSubmit = async (data) => {
-    console.log("Data here===>", data);
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("price", data.price.toString());
-    formData.append("stock", data.stock.toString());
-    formData.append("description", data.description);
-    formData.append("image", data?.imageFile[0]);
-    if (data?.imageFile[0]) formData.append("image", data?.imageFile[0]);
 
+  const onSubmit = async (formDataValues) => {
+    console.log("Form data received:", formDataValues);
+    let imageUrl = ""; // Placeholder for the uploaded image URL
+
+    // Check if there's an image to upload first
+    if (image && image.length > 0) {
+      const imageFormData = new FormData();
+      imageFormData.append("file", image[0]); // Assuming `image` state holds FileList
+      imageFormData.append("upload_preset", "spark_fitness");
+      imageFormData.append("cloud_name", "spark-cloud");
+
+      // Attempt to upload the image
+      try {
+        const uploadResponse = await fetch(
+          "https://api.cloudinary.com/v1_1/spark-cloud/image/upload",
+          {
+            method: "post",
+            body: imageFormData,
+          }
+        );
+        const imageData = await uploadResponse.json();
+        imageUrl = imageData.url; // Assuming the response contains the URL of the uploaded image
+        console.log("Image uploaded successfully:", imageUrl);
+      } catch (error) {
+        console.error("Image upload error:", error);
+        // Optionally, handle the error (e.g., notify the user)
+        return; // Abort product submission if image upload fails
+      }
+    }
+
+    // Prepare FormData for product submission
+    const productFormData = new FormData();
+    productFormData.append("name", formDataValues.name);
+    productFormData.append("price", formDataValues.price.toString());
+    productFormData.append("stock", formDataValues.stock.toString());
+    productFormData.append("description", formDataValues.description);
+
+    console.log("productFormData", productFormData);
+
+    // Append imageUrl if available
+    if (imageUrl) {
+      productFormData.append("image", imageUrl);
+    }
+
+    // Submit product data to the server
     try {
-      const response = await axios.post("/products/newproducts", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response.data);
+      const response = await axios.post(
+        "/products/newproducts",
+        productFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Server response:", response.data);
       reset(); // Reset form fields after successful submission
-      // Handle successful response (e.g., display a success message or redirect)
     } catch (error) {
-      console.error(error);
-      // Handle error (e.g., display an error message)
+      console.error("Error submitting product:", error);
     }
   };
+
+  // const UploadImageToCloudinary = async () => {
+  //   const data = new FormData();
+  //   data.append("file", image);
+  //   data.append("upload_preset", "spark_fitness");
+  //   data.append("cloud_name", "spark-cloud");
+
+  //   fetch("https://api.cloudinary.com/v1_1/spark-cloud/image/upload", {
+  //     method: "post",
+  //     body: data,
+  //   })
+  //     .then((res) => console.log("response here", res.json()))
+  //     .then((data) => {
+  //       console.log("final data", data);
+  //       console.log(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("error", err);
+  //       console.log(err);
+  //     });
+
+  //   // try {
+  //   //   const response = await axios.post(
+  //   //     "https://api.cloudinary.com/v1_1/spark-cloud/image/upload",
+  //   //     data
+  //   //   );
+  //   //   console.log("response", response);
+  //   // } catch (error) {
+  //   //   console.error("error here", error);
+  //   // }
+  // };
+
+  // const onSubmit = async (data) => {
+  //   console.log("Data here===>", data);
+  //   const formData = new FormData();
+  //   formData.append("name", data.name);
+  //   formData.append("price", data.price.toString());
+  //   formData.append("stock", data.stock.toString());
+  //   formData.append("description", data.description);
+  //   formData.append("image", data?.imageFile[0]);
+  //   if (data?.imageFile[0]) formData.append("image", data?.imageFile[0]);
+
+  //   try {
+  //     const response = await axios.post("/products/newproducts", formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+  //     console.log(response.data);
+  //     reset(); // Reset form fields after successful submission
+  //     // Handle successful response (e.g., display a success message or redirect)
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Handle error (e.g., display an error message)
+  //   }
+  // };
 
   return (
     <Container
@@ -127,11 +225,11 @@ function AddProduct() {
         />
         <Box
           sx={{
-            border: "2px dashed #445FD2",
+            border: "2px solid #1C2229",
             background: "#fff",
             width: "30%",
             maxWidth: "270px",
-            p: "4%",
+            // p: "4%",
             mx: "auto",
             position: "relative",
           }}
@@ -170,6 +268,7 @@ function AddProduct() {
                   fontWeight: 400,
                   fontSize: "10px",
                   color: "#6B7A99",
+                  padding: "10px",
                   cursor: "pointer",
                   "&:hover": {
                     color: "blue",
@@ -177,51 +276,36 @@ function AddProduct() {
                   textalign: "center",
                 }}
               >
-                Drag & Drop upload or browse to choose a file
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Mulish",
-                  fontStyle: "normal",
-                  fontWeight: 400,
-                  fontSize: "8px",
-                  color: "#676767",
-                  textAlign: "center",
-                }}
-              >
-                Supported format : JPEG, PNG, GIF, MP4, PDF
+                click here to browse files or drag and drop files
               </Typography>
             </Box>
           </Box>
-          <Box sx={{ textAlign: "center", mt: "1%" }}>
-            <Typography
-              sx={{
-                fontFamily: "Poppins",
-                fontStyle: "normal",
-                fontWeight: 400,
-                fontSize: {
-                  xl: "10px",
-                  lg: "10px",
-                  md: "10px",
-                  sm: "8px",
-                  xs: "8px",
-                },
-                color: "#445FD2",
-              }}
-            >
-              Mandatory Photos : Front View, Back View, Close Fabric View, Model
-              Wearing View , Size Chart & Privacy Policy
-            </Typography>
-          </Box>
+
           <input
             type='file'
             multiple
-            onChange={(event) => setImage(event.target.files)}
+            onChange={(event) =>
+              setImage(
+                event.target.files,
+                console.log("event.target.files", event.target.files)
+              )
+            }
             hidden
             accept='.png,.pdf,.mp4,.jpeg,.gif'
             ref={inputRef}
           />
         </Box>
+        {/* 
+        <Button
+          type='submit'
+          variant='contained'
+          // color='success'
+          sx={{ mt: 2 }}
+          onClick={UploadImageToCloudinary}
+        >
+          {" "}
+          upload image
+        </Button> */}
 
         {errors.image && (
           <Typography color='error' sx={{ mt: 2, width: "100%" }}>
@@ -234,7 +318,7 @@ function AddProduct() {
           color='success'
           sx={{ mt: 2 }}
         >
-          Add Product
+          Upload Product
         </Button>
       </Box>
     </Container>
