@@ -41,7 +41,7 @@ function AddProduct() {
     setImage(event.dataTransfer.files);
   };
 
-  const imageFile = watch("imageFile");
+  // const imageFile = watch("imageFile");
 
   const onSubmit = async (formDataValues) => {
     console.log("Form data received:", formDataValues);
@@ -68,36 +68,16 @@ function AddProduct() {
         console.log("Image uploaded successfully:", imageUrl);
       } catch (error) {
         console.error("Image upload error:", error);
-        // Optionally, handle the error (e.g., notify the user)
         return; // Abort product submission if image upload fails
       }
     }
 
-    // Prepare FormData for product submission
-    const productFormData = new FormData();
-    productFormData.append("name", formDataValues.name);
-    productFormData.append("price", formDataValues.price.toString());
-    productFormData.append("stock", formDataValues.stock.toString());
-    productFormData.append("description", formDataValues.description);
-
-    console.log("productFormData", productFormData);
-
-    // Append imageUrl if available
-    if (imageUrl) {
-      productFormData.append("image", imageUrl);
-    }
-
     // Submit product data to the server
     try {
-      const response = await axios.post(
-        "/products/newproducts",
-        productFormData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/products/newproducts", {
+        ...formDataValues,
+        image: imageUrl,
+      });
 
       console.log("Server response:", response.data);
       reset(); // Reset form fields after successful submission
@@ -105,62 +85,6 @@ function AddProduct() {
       console.error("Error submitting product:", error);
     }
   };
-
-  // const UploadImageToCloudinary = async () => {
-  //   const data = new FormData();
-  //   data.append("file", image);
-  //   data.append("upload_preset", "spark_fitness");
-  //   data.append("cloud_name", "spark-cloud");
-
-  //   fetch("https://api.cloudinary.com/v1_1/spark-cloud/image/upload", {
-  //     method: "post",
-  //     body: data,
-  //   })
-  //     .then((res) => console.log("response here", res.json()))
-  //     .then((data) => {
-  //       console.log("final data", data);
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("error", err);
-  //       console.log(err);
-  //     });
-
-  //   // try {
-  //   //   const response = await axios.post(
-  //   //     "https://api.cloudinary.com/v1_1/spark-cloud/image/upload",
-  //   //     data
-  //   //   );
-  //   //   console.log("response", response);
-  //   // } catch (error) {
-  //   //   console.error("error here", error);
-  //   // }
-  // };
-
-  // const onSubmit = async (data) => {
-  //   console.log("Data here===>", data);
-  //   const formData = new FormData();
-  //   formData.append("name", data.name);
-  //   formData.append("price", data.price.toString());
-  //   formData.append("stock", data.stock.toString());
-  //   formData.append("description", data.description);
-  //   formData.append("image", data?.imageFile[0]);
-  //   if (data?.imageFile[0]) formData.append("image", data?.imageFile[0]);
-
-  //   try {
-  //     const response = await axios.post("/products/newproducts", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //     console.log(response.data);
-  //     reset(); // Reset form fields after successful submission
-  //     // Handle successful response (e.g., display a success message or redirect)
-  //   } catch (error) {
-  //     console.error(error);
-  //     // Handle error (e.g., display an error message)
-  //   }
-  // };
 
   return (
     <Container
