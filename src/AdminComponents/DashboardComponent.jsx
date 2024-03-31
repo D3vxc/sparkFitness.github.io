@@ -44,16 +44,17 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red"];
 function DashboardComponent() {
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1, p: 6, bgcolor: "lightpink", height: "100vh" }}>
-        <Typography variant='h4' gutterBottom>
+      <Box sx={{ flexGrow: 1, p: 6, bgcolor: "#FBFFFE", height: "100vh" }}>
+        <Typography variant='h4'  component="div">
           Dashboard Overview
         </Typography>
         <Grid container spacing={10}>
           {/* PieChart for User Roles */}
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} >
             <Paper
               sx={{
                 p: 2,
+                bgcolor: "#F3F3F3",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -62,7 +63,7 @@ function DashboardComponent() {
               <Typography variant='h6' component='h2'>
                 Role Distribution
               </Typography>
-              <PieChart width={400} height={600}>
+              <PieChart width={400} height={450}>
                 {" "}
                 {/* Increased height to 600 */}
                 <Pie
@@ -70,7 +71,7 @@ function DashboardComponent() {
                   cx='50%'
                   cy='50%'
                   labelLine={false}
-                  outerRadius={80}
+                  outerRadius={60}
                   fill='#8884d8'
                   dataKey='value'
                   label={({ name, percent }) =>
@@ -94,10 +95,11 @@ function DashboardComponent() {
             </Paper>
           </Grid>
           {/* BarChart for Product Sales */}
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} >
             <Paper
               sx={{
                 p: 2,
+                bgcolor: "#F3F3F3",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -108,7 +110,7 @@ function DashboardComponent() {
               </Typography>
               <BarChart
                 width={500}
-                height={300}
+                height={350}
                 data={productSalesData}
                 margin={{
                   top: 5,

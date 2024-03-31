@@ -1,25 +1,24 @@
 import React from "react";
-import {
-  Typography,
- Grid,
-  Box,
-} from "@mui/material";
+import { Typography, Grid, Box } from "@mui/material";
 import { useFetchAllProduct } from "../components/Hooks/getAllproduct";
 
 function ProductsComponent() {
   const {
     data: getAllProduct,
-    isLoading: getproductLoading,
-    refetch: refetchProduct,
+    isLoading: getProductLoading,
+    refetch: refetchUsers,
   } = useFetchAllProduct();
 
   console.log("getAllProduct", getAllProduct);
-  
+
+  if (getProductLoading) {
+    return <Typography>Loading...</Typography>; // Display loading state
+  }
 
   return (
     <React.Fragment>
-      <Box sx={{ flexGrow: 1, p: 6, bgcolor: "lightpink", height: "100vh" }}>
-        <Typography variant='h4' gutterBottom>
+      <Box sx={{ flexGrow: 1, p: 6, bgcolor: "#FBFFFE", height: "100vh" }}>
+        <Typography variant="h4" component="div">
           Products
         </Typography>
         <Grid
@@ -28,9 +27,9 @@ function ProductsComponent() {
             height: "100%",
             maxHeight: "600px",
             overflow: "scroll",
-            
           }}
         >
+          {/* Header */}
           <Grid
             item
             xl={12}
@@ -40,54 +39,78 @@ function ProductsComponent() {
             xs={12}
             sx={{
               display: "flex",
-              bgcolor: "lightblue",
+              bgcolor: "#F3F3F3",
+              borderBottom: "1px solid #E9EEF3",
+              padding: "20px",
             }}
           >
-            <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
-              ID
+            <Grid item xl={1} lg={1} md={1} sm={1} xs={1} >
+              Sr. No.
             </Grid>
-            <Grid item xl={4} lg={4} md={4} sm={4} xs={4}>
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
               Name
             </Grid>
-            <Grid item xl={8} lg={8} md={8} sm={8} xs={8}>
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={3} >
               Description
             </Grid>
-            <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
-              price
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+              Image
             </Grid>
-           </Grid>
-           {getAllProduct?.map((data) => {
-            return (
-              <Grid
-                item
-                xl={12}
-                lg={12}
-                md={12}
-                sm={12}
-                xs={12}
-                sx={{
-                  display: "flex",
-                  bgcolor: "lightslategray",
-                }}
-              >
-                <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
-                  {/* //i want seriel number here */}
-                  {data?._id }
-                </Grid>
-                <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
-                  {data?.name}
-                </Grid>
-                <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
-                  {data?.description}
-                </Grid>
-                <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
-                  {data?.price}
-                </Grid>
-                </Grid>
-            );
-          })}
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+              Price
+            </Grid>
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+              Stock
+            </Grid>
+          </Grid>
+          {/* Product Rows */}
+          {getAllProduct?.map((data, i) => (
+            <Grid
+              key={i}
+              item
+              xl={12}
+              lg={12}
+              md={12}
+              sm={12}
+              xs={12}
+              sx={{
+                display: "flex",
+                bgcolor: "#F3F3F3",
+                borderBottom: "1px solid #E9EEF3",
+                padding: "20px",
+              }}
+            >
+              <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
+                {i + 1}
+              </Grid>
+              <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                {data?.name}
+              </Grid>
+              <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
+                {data?.description}
+              </Grid>
+              <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                <Box
+                  component="img"
+                  src={data?.image}
+                  alt="class image"
+                  sx={{
+                    height: "50px",
+                    width: "50px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}/>
+              </Grid>
+              <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                ${data?.price}
+              </Grid>
+              <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                {data?.stock}
+              </Grid>
+            </Grid>
+          ))}
         </Grid>
-         </Box>
+      </Box>
     </React.Fragment>
   );
 }
