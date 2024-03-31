@@ -57,18 +57,22 @@ function AdminDashboard() {
           md={3}
           sm={6}
           xs={12}
-          sx={
-            {
-              bgcolor: "green",
-              padding: "50px",
+          sx={{
+            bgcolor: "green",
+            padding: "50px",
+            height: "112.5vh",
 
-              /* Your styles here */
-            }
-          }
+            /* Your styles here */
+          }}
         >
           {/* Navigation */}
           <Box>
-            <Typography onClick={() => changeView("Dashboard") /*navigate("/admin/Dashboard")*/} sx={NavText}>
+            <Typography
+              onClick={
+                () => changeView("Dashboard") /*navigate("/admin/Dashboard")*/
+              }
+              sx={NavText}
+            >
               Dashboard
             </Typography>
             <Typography onClick={() => changeView("Users")} sx={NavText}>
@@ -82,19 +86,7 @@ function AdminDashboard() {
             </Typography>
           </Box>
         </Grid>
-        <Grid
-          item
-          xl={9}
-          lg={9}
-          md={9}
-          sm={6}
-          xs={12}
-          sx={
-            {
-              /* Your styles here */
-            }
-          }
-        >
+        <Grid item xl={9} lg={9} md={9} sm={6} xs={12} sx={{}}>
           {/* Conditional Rendering based on currentView */}
           {currentView === "Dashboard" && <DashboardComponent />}
           {currentView === "Users" && <UsersComponent />}
@@ -125,6 +117,3 @@ const NavText = {
     color: "#000",
   },
 };
-
-
-

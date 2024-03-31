@@ -273,8 +273,8 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const [firstNameError, setFirstNameError] = useState(false);
-  const [lastNameError, setLastNameError] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
@@ -283,23 +283,23 @@ export default function SignUp() {
     setIsLoading(true);
     const data = new FormData(event.currentTarget);
 
-    const firstName = data.get("firstName");
-    const lastName = data.get("lastName");
+    const name = data.get("name");
+    const phone = data.get("phone");
     const email = data.get("email");
     const password = data.get("password");
 
     // Basic validation
-    setFirstNameError(!firstName);
-    setLastNameError(!lastName);
+    setNameError(!name);
+    setPhoneError(!phone);
     setEmailError(!email);
     setPasswordError(!password);
 
-    if (firstName && lastName && email && password) {
+    if (name && phone && email && password) {
       try {
         // Adjust URL to your API endpoint for registration
         const response = await axios.post("/user/register", {
-          firstName,
-          lastName,
+          name,
+          phone,
           email,
           password,
         });
@@ -345,31 +345,33 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete='given-name'
-                  name='firstName'
+                  name='name'
                   required
                   fullWidth
-                  id='firstName'
-                  label='First Name'
+                  id='name'
+                  label='Name'
                   autoFocus
-                  error={firstNameError}
-                  helperText={firstNameError ? "First name is required" : ""}
+                  error={nameError}
+                  helperText={nameError ? "First name is required" : ""}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
+                  autoComplete='phone'
+                  name='phone'
                   required
                   fullWidth
-                  id='lastName'
-                  label='Last Name'
-                  name='lastName'
-                  autoComplete='family-name'
-                  error={lastNameError}
-                  helperText={lastNameError ? "Last name is required" : ""}
+                  id='phone'
+                  label='Phone Number'
+                  autoFocus
+                  error={phoneError}
+                  helperText={phoneError ? "First name is required" : ""}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
