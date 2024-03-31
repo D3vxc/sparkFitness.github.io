@@ -14,51 +14,13 @@ import {
 import { useFetchAllUsers } from "../components/Hooks/GetAllUsers";
 
 function UsersComponent() {
-  // if (loading) {
-  //   return (
-  //     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-  //       <CircularProgress />
-  //     </div>
-  //   );
-  // }
-
-  // Mock user data
-
-  const {
+const {
     data: getAllUsers,
     isLoading: getusersLoading,
     refetch: refetchUsers,
   } = useFetchAllUsers();
 
   console.log("getAllUsers", getAllUsers);
-
-  // const users = [
-  //   {
-  //     id: 1,
-  //     name: "John Doe",
-  //     email: "john123@gmail.com",
-  //     phoneNumber: "6325410954",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Jane Doe",
-  //     email: "jane123@gmail.com",
-  //     phoneNumber: "9425410953",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Alice",
-  //     email: "alice123@gmail.com",
-  //     phoneNumber: "6525410952",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Bob",
-  //     email: "bob123@gmail.com",
-  //     phoneNumber: "9225410951",
-  //   },
-  //   // Add more users as needed
-  // ];
 
   return (
     <React.Fragment>

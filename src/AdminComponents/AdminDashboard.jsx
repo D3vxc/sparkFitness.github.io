@@ -24,17 +24,19 @@ function AdminDashboard() {
       <Box
         sx={{
           display: "flex",
-          bgcolor: "blue",
+          background: "#A1F65E",
           justifyContent: "flex-start",
           alignItems: "center",
           padding: "10px",
           gap: "10px",
+          borderBottom: "2px solid #E9EEF3",
         }}
       >
         <Box
           component='img'
           src={logo}
-          sx={{ height: "50px", width: "50px" }}
+          sx={{ height: "50px", width: "50px", border: "1px solid #000",
+          borderRadius: "50px", }}
         />
         <Typography
           sx={{
@@ -58,7 +60,8 @@ function AdminDashboard() {
           sm={6}
           xs={12}
           sx={{
-            bgcolor: "green",
+            bgcolor: "#FBFFFE",
+            borderRight: "2px solid #E9EEF3",
             padding: "50px",
             height: "112.5vh",
 

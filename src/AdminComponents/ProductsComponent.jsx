@@ -1,25 +1,20 @@
 import React from "react";
 import {
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+ Grid,
   Box,
 } from "@mui/material";
+import { useFetchAllProduct } from "../components/Hooks/getAllproduct";
 
 function ProductsComponent() {
-  // Mock product data
-  const products = [
-    { id: 1, name: "Treadmill Pro", category: "Fitness", price: "$999" },
-    { id: 2, name: "Yoga Mat", category: "Accessories", price: "$19" },
-    { id: 3, name: "Dumbbell Set", category: "Weights", price: "$49" },
-    { id: 4, name: "Resistance Bands", category: "Accessories", price: "$24" },
-    // Add more products as needed
-  ];
+  const {
+    data: getAllProduct,
+    isLoading: getproductLoading,
+    refetch: refetchProduct,
+  } = useFetchAllProduct();
+
+  console.log("getAllProduct", getAllProduct);
+  
 
   return (
     <React.Fragment>
@@ -27,32 +22,72 @@ function ProductsComponent() {
         <Typography variant='h4' gutterBottom>
           Products
         </Typography>
-        <TableContainer component={Paper}>
-          <Table aria-label='simple table'>
-            <TableHead>
-              <TableRow>
-                <TableCell>Product Name</TableCell>
-                <TableCell align='right'>Category</TableCell>
-                <TableCell align='right'>Price</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((product) => (
-                <TableRow
-                  key={product.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component='th' scope='product'>
-                    {product.name}
-                  </TableCell>
-                  <TableCell align='right'>{product.category}</TableCell>
-                  <TableCell align='right'>{product.price}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+        <Grid
+          container
+          sx={{
+            height: "100%",
+            maxHeight: "600px",
+            overflow: "scroll",
+            
+          }}
+        >
+          <Grid
+            item
+            xl={12}
+            lg={12}
+            md={12}
+            sm={12}
+            xs={12}
+            sx={{
+              display: "flex",
+              bgcolor: "lightblue",
+            }}
+          >
+            <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
+              ID
+            </Grid>
+            <Grid item xl={4} lg={4} md={4} sm={4} xs={4}>
+              Name
+            </Grid>
+            <Grid item xl={8} lg={8} md={8} sm={8} xs={8}>
+              Description
+            </Grid>
+            <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
+              price
+            </Grid>
+           </Grid>
+           {getAllProduct?.map((data) => {
+            return (
+              <Grid
+                item
+                xl={12}
+                lg={12}
+                md={12}
+                sm={12}
+                xs={12}
+                sx={{
+                  display: "flex",
+                  bgcolor: "lightslategray",
+                }}
+              >
+                <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
+                  {/* //i want seriel number here */}
+                  {data?._id }
+                </Grid>
+                <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                  {data?.name}
+                </Grid>
+                <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
+                  {data?.description}
+                </Grid>
+                <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
+                  {data?.price}
+                </Grid>
+                </Grid>
+            );
+          })}
+        </Grid>
+         </Box>
     </React.Fragment>
   );
 }
