@@ -21,9 +21,9 @@ function Products() {
         }}
       >
         <MainBanner
-          mainText={"our products"}
+          mainText={"Our Products"}
           image={
-            "https://res.cloudinary.com/doy1mp8wl/image/upload/v1711707451/Banners/ProductPageBanner.svg"
+            "https://res.cloudinary.com/spark-cloud/image/upload/v1711707451/Banners/ProductPageBanner.svg"
           }
           width={"950px"}
           imageHeight={"55vh"}
