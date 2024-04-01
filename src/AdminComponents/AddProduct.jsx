@@ -38,28 +38,6 @@ function AddProduct() {
     setImage(event.dataTransfer.files);
   };
 
-<<<<<<< HEAD
-  const imageFile = watch("imageFile");
-  const onSubmit = async (data) => {
-    console.log("Data here===>", data);
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("price", data.price.toString());
-    formData.append("stock", data.stock.toString());
-    formData.append("description", data.description);
-    formData.append("image", data?.imageFile[0]);
-    if (data?.imageFile[0]) formData.append("image", data?.imageFile[0]);
-
-    try {
-      const response = await axios.post("/products/newproducts", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log(response.data);
-        reset(); // Reset form fields after successful submission
-      // Handle successful response (e.g., display a success message or redirect)
-=======
   // const imageFile = watch("imageFile");
 
   const onSubmit = async (formDataValues) => {
@@ -100,7 +78,6 @@ function AddProduct() {
 
       console.log("Server response:", response.data);
       reset(); // Reset form fields after successful submission
->>>>>>> 2008e7dfcd9104de876ac5d2c1c63d43e799fcab
     } catch (error) {
       console.error(error);
       // Handle error (e.g., display an error message)

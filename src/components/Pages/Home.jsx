@@ -19,8 +19,6 @@ function Home() {
     refetch: refetchUsers,
   } = useFetchAllUsers();
 
-  console.log("getAllUsers", getAllUsers);
-
   const isVerified = getAllUsers?.isVerified;
 
   const {
@@ -28,8 +26,6 @@ function Home() {
     isLoading: classesLoading,
     refetch: refetchClasses,
   } = useFetchAllClasses();
-
-  console.log("allClasses", allClasses);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,14 +45,6 @@ function Home() {
 
     fetchData();
   }, [isVerified, navigate, getAllUsers]);
-
-  // function truncateWithEllipsis(text, maxLength) {
-  //   // If the text is shorter than the maxLength, return it as is.
-  //   // If it's longer, truncate it and add '...'.
-  //   return text.length > maxLength
-  //     ? text.substring(0, maxLength) + "..."
-  //     : text;
-  // }
 
   return (
     <React.Fragment>
@@ -112,12 +100,6 @@ function Home() {
               About Us
             </Box>
           </Box>
-          {/* <h2>User Data</h2>
-        <ul>
-          {getAllUsers?.map((user) => (
-            <li key={user?._id}>{user?.name}</li>
-          ))}
-        </ul> */}
         </Box>
         <Box
           sx={{
