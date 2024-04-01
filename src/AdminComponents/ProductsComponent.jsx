@@ -18,7 +18,7 @@ function ProductsComponent() {
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1, p: 6, bgcolor: "#FBFFFE", height: "100vh" }}>
-        <Typography variant="h4" component="div">
+        <Typography variant='h4' component='div'>
           Products
         </Typography>
         <Grid
@@ -44,22 +44,22 @@ function ProductsComponent() {
               padding: "20px",
             }}
           >
-            <Grid item xl={1} lg={1} md={1} sm={1} xs={1} >
+            <Grid item xl={1} lg={1} md={1} sm={1} xs={1}>
               Sr. No.
             </Grid>
-            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
               Name
             </Grid>
-            <Grid item xl={3} lg={3} md={3} sm={3} xs={3} >
+            <Grid item xl={3} lg={3} md={3} sm={3} xs={3}>
               Description
             </Grid>
-            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
               Image
             </Grid>
-            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
               Price
             </Grid>
-            <Grid item xl={2} lg={2} md={2} sm={2} xs={2} >
+            <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
               Stock
             </Grid>
           </Grid>
@@ -91,18 +91,29 @@ function ProductsComponent() {
               </Grid>
               <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
                 <Box
-                  component="img"
+                  component='img'
                   src={data?.image}
-                  alt="class image"
+                  alt='class image'
                   sx={{
                     height: "50px",
                     width: "50px",
                     borderRadius: "50%",
                     objectFit: "cover",
-                  }}/>
+                  }}
+                />
               </Grid>
-              <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
-                ${data?.price}
+              <Grid
+                item
+                xl={2}
+                lg={2}
+                md={2}
+                sm={2}
+                xs={2}
+                sx={{
+                  display: "flex",
+                }}
+              >
+                <Typography>₹</Typography> {data?.price}
               </Grid>
               <Grid item xl={2} lg={2} md={2} sm={2} xs={2}>
                 {data?.stock}
