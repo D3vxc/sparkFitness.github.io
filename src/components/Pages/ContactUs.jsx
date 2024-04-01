@@ -77,19 +77,41 @@ const ContactUs = () => {
                 color: "#000",
                 fontSize: "22px",
                 fontWeight: 600,
-                lineHeight: "40px",
+                lineHeight: "60px",
+                borderBottom: "2px solid #D3D3D3",
+                width: "50%",
               }}
             >
               Open Hours
             </Typography>
             <Typography sx={HoursText}>
-              <b>Mon - Fri:</b> &nbsp; 08:00 AM to 09:00 PM
+              <b
+                style={{
+                  color: "#000",
+                }}
+              >
+                Mon - Fri:
+              </b>{" "}
+              &nbsp; 08:00 AM to 09:00 PM
             </Typography>
             <Typography sx={HoursText}>
-              <b>Sat:</b> &nbsp; 09:00 AM to 06:00 PM
+              <b
+                style={{
+                  color: "#000",
+                }}
+              >
+                Sat:
+              </b>{" "}
+              &nbsp; 09:00 AM to 06:00 PM
             </Typography>
             <Typography sx={HoursText}>
-              <b>Sunday:</b>
+              <b
+                style={{
+                  color: "#000",
+                }}
+              >
+                Sunday:
+              </b>
               &nbsp; 09:00 AM to 02:00 PM
             </Typography>
           </Box>
@@ -108,7 +130,7 @@ const ContactUs = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: "20px",
             }}
           >
@@ -119,6 +141,8 @@ const ContactUs = () => {
                 fontSize: "35px",
                 fontWeight: 700,
                 lineHeight: "40px",
+                width: "95%",
+                mx: "auto",
               }}
             >
               Send Us a Message
@@ -130,6 +154,8 @@ const ContactUs = () => {
                 fontSize: "16px",
                 fontWeight: 500,
                 letterSpacing: "0px",
+                width: "95%",
+                mx: "auto",
               }}
             >
               Your email address will not be published *
