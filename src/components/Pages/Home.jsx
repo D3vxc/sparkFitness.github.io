@@ -590,7 +590,7 @@ function Home() {
             </Grid>
           </Grid>
         </Box>
-        <Box>ewofhiewo</Box>
+        {/* <Box>ewofhiewo</Box> */}
       </Box>
     </React.Fragment>
   );
