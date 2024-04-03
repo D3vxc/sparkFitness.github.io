@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react-gh-pages/static/css/main.1b1288b2.css",
+    "main.js": "/react-gh-pages/static/js/main.20330c40.js",
+    "static/js/787.28cb0dcd.chunk.js": "/react-gh-pages/static/js/787.28cb0dcd.chunk.js",
+    "static/media/Banner.svg": "/react-gh-pages/static/media/Banner.1e9c2b7dd9ad0a4c0f143661c3c2947c.svg",
+    "static/media/AboutBannerImageOne.svg": "/react-gh-pages/static/media/AboutBannerImageOne.ea3cfa4fc515cad2f702bf31ad8973d0.svg",
+    "static/media/AboutBannerImageTwo.svg": "/react-gh-pages/static/media/AboutBannerImageTwo.d13ba2f534833216003cebe54e83b4dc.svg",
+    "static/media/3.svg": "/react-gh-pages/static/media/3.e7c462658174d7e552f589fde50afda3.svg",
+    "static/media/1.svg": "/react-gh-pages/static/media/1.3c45fbf2a5a228e58a6301cfbc65651b.svg",
+    "static/media/4.svg": "/react-gh-pages/static/media/4.ba85d29e2e0c0393086f89cc86ee5425.svg",
+    "static/media/BannerForClasses.svg": "/react-gh-pages/static/media/BannerForClasses.ee055caa479073ccef3776886bd3d3f3.svg",
+    "static/media/banner.svg": "/react-gh-pages/static/media/banner.a3dc0ed0d19e3bb99b8b4eca9febb346.svg",
+    "static/media/6.svg": "/react-gh-pages/static/media/6.daf3864cf538f17c59b22fedcc54f50a.svg",
+    "static/media/AboutImageTwo.svg": "/react-gh-pages/static/media/AboutImageTwo.6f980c719d3d7f513d44fd1f5cf33261.svg",
+    "static/media/2.svg": "/react-gh-pages/static/media/2.a06bc96addcca2efb1b1d8129d643727.svg",
+    "static/media/5.svg": "/react-gh-pages/static/media/5.c6eeeeb7ec7d46ca4016ae9e5789a655.svg",
+    "static/media/AboutImageOne.svg": "/react-gh-pages/static/media/AboutImageOne.dd4517feddacae3e433a290c6d7a06a5.svg",
+    "static/media/AboutImageThree.svg": "/react-gh-pages/static/media/AboutImageThree.4b92b27396f3699607b9f12c98d89b4a.svg",
+    "static/media/Join.svg": "/react-gh-pages/static/media/Join.4d71edd9d73901170d542a31dda300c9.svg",
+    "static/media/Logo.svg": "/react-gh-pages/static/media/Logo.1c18fd74f09c73e1ffc9cdd9d31cbda7.svg",
+    "index.html": "/react-gh-pages/index.html",
+    "static/media/BackgroundPattern.svg": "/react-gh-pages/static/media/BackgroundPattern.48b0ae95281af3909b7377011c05bc4c.svg",
+    "static/media/Up Arrow.svg": "/react-gh-pages/static/media/Up Arrow.3a81a567abc994b472a27d9bd3c0a646.svg",
+    "main.1b1288b2.css.map": "/react-gh-pages/static/css/main.1b1288b2.css.map",
+    "main.20330c40.js.map": "/react-gh-pages/static/js/main.20330c40.js.map",
+    "787.28cb0dcd.chunk.js.map": "/react-gh-pages/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b1288b2.css",
+    "static/js/main.20330c40.js"
+  ]
+}
